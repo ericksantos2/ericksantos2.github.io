@@ -20,10 +20,15 @@ $tamanho-logo: 2.5rem;
   align-items: center;
   display: flex;
   gap: 1rem;
-  a {
+  .link {
+    align-items: center;
+    border-bottom: 0px solid rgba(255, 255, 255, 0);
     color: $cor-texto-cabecalho;
+    display: flex;
+    gap: 0.16rem;
   }
-  &__item--hover:hover {
+  .link:hover {
     border-bottom: 1px solid white;
+    transition: 0.5s;
   }
 }
