@@ -12,11 +12,7 @@ projetos = projetos.sort(
   (a, b) => new Date(b.pushed_at) - new Date(a.pushed_at)
 );
 if (projetos.length > 5) {
-  let projetosNovo = [];
-  for (let index = 0; index < 5; index++) {
-    projetosNovo.push(projetos[index]);
-  }
-  projetos = projetosNovo;
+  projetos = projetos.slice(0, 5);
 }
 
 function ultimaAtualização(textoData) {
