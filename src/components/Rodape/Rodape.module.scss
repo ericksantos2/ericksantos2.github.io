@@ -4,10 +4,19 @@
   align-items: center;
   background-image: $cor-cabecalho;
   display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
   height: 7.5rem;
   justify-content: center;
-  a {
-    color: $cor-texto-cabecalho;
+  &__texto {
     border-bottom: 1px solid $cor-texto-cabecalho;
+    color: $cor-texto-cabecalho;
+  }
+  &__links {
+    display: flex;
+    gap: 0.33rem;
+  }
+  &__link {
+    color: $cor-texto-cabecalho;
   }
 }
