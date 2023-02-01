@@ -1,0 +1,13 @@
+@import '@/assets/styles/variaveis';
+
+.rodape {
+  align-items: center;
+  background-image: $cor-cabecalho;
+  display: flex;
+  height: 7.5rem;
+  justify-content: center;
+  a {
+    color: $cor-texto-cabecalho;
+    border-bottom: 1px solid $cor-texto-cabecalho;
+  }
+}

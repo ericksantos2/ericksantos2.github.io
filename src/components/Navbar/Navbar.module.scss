@@ -1,0 +1,29 @@
+@import '@/assets/styles/variaveis';
+
+$tamanho-logo: 2.5rem;
+
+.cabecalho {
+  align-items: center;
+  background: $cor-cabecalho;
+  box-shadow: 0px 0px 50px black;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem $margem;
+}
+
+#logo {
+  height: $tamanho-logo;
+  width: $tamanho-logo;
+}
+
+.links {
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+  a {
+    color: $cor-texto-cabecalho;
+  }
+  &__item--hover:hover {
+    border-bottom: 1px solid white;
+  }
+}

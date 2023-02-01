@@ -1,0 +1,32 @@
+[
+  {
+    "nome": "React",
+    "id": "react",
+    "icon": "SiReact"
+  },
+  {
+    "nome": "HTML",
+    "id": "html",
+    "icon": "SiHtml5"
+  },
+  {
+    "nome": "CSS",
+    "id": "css",
+    "icon": "SiCss3"
+  },
+  {
+    "nome": "JavaScript",
+    "id": "javascript",
+    "icon": "SiJavascript"
+  },
+  {
+    "nome": "TypeScript",
+    "id": "typescript",
+    "icon": "SiTypescript"
+  },
+  {
+    "nome": "Github",
+    "id": "github",
+    "icon": "SiGithub"
+  }
+]

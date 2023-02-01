@@ -1,0 +1,64 @@
+@import "@/assets/styles/variaveis";
+
+$margem-baixo: 0.67rem;
+
+.sobremim {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 3rem;
+  text-align: center;
+  &__resumo {
+    margin-top: 5rem;
+    padding: 0 calc($margem * 2);
+    &__titulo {
+      font-size: 23px;
+      font-weight: 500;
+      margin-bottom: $margem-baixo;
+    }
+  }
+  &__habilidades {
+    margin-top: 2rem;
+    &__titulo {
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: $margem-baixo;
+    }
+    &__itens {
+      display: flex;
+      gap: 1rem;
+    }
+    &__item {
+      align-items: center;
+      display: flex;
+      gap: 0.33rem;
+      position: relative;
+      padding: 0.5rem 1rem;
+    }
+    &__item::before {
+      background-image: $cor-projeto-item;
+      background-size: cover;
+      border-radius: 20px;
+      bottom: 0px;
+      content: "";
+      left: 0px;
+      opacity: 0.12;
+      position: absolute;
+      right: 0px;
+      top: 0px;
+    }
+  }
+  &__contato {
+    margin-top: 2rem;
+    &__titulo {
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: $margem-baixo;
+    }
+    &__email {
+      span {
+        font-style: italic;
+      }
+    }
+  }
+}

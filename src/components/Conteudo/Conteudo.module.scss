@@ -1,0 +1,36 @@
+@import '@/assets/styles/variaveis';
+
+$tamanho-imagem: 30rem;
+
+.conteudo {
+  align-items: center;
+  display: flex;
+  padding: 4rem $margem;
+  &__perfil {
+    align-items: center;
+    border-image-slice: 1;
+    border-image-source: $cor-borda-conteudo;
+    border-right: 1px solid;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    justify-content: center;
+    padding-top: 1rem;
+    width: 50%;
+    &__foto {
+      border-radius: 100%;
+      height: $tamanho-imagem;
+      object-fit: cover;
+      width: $tamanho-imagem;
+    }
+    &__textos {
+      display: flex;
+      flex-direction: column;
+      gap: 0.33rem;
+      text-align: center;
+    }
+    &__nome {
+      font-size: 18px;
+    }
+  }
+}
