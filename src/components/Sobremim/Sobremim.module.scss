@@ -1,4 +1,5 @@
 @import "@/assets/styles/variaveis";
+@import '@/assets/styles/breakpoints';
 
 $margem-baixo: 0.67rem;
 
@@ -8,26 +9,31 @@ $margem-baixo: 0.67rem;
   flex-direction: column;
   margin-bottom: 3rem;
   text-align: center;
+
   &__resumo {
-    margin-top: 5rem;
     padding: 0 calc($margem * 2);
+
     &__titulo {
       font-size: 23px;
       font-weight: 500;
       margin-bottom: $margem-baixo;
     }
   }
+
   &__habilidades {
     margin-top: 2rem;
+
     &__titulo {
       font-size: 18px;
       font-weight: 500;
       margin-bottom: $margem-baixo;
     }
+
     &__itens {
       display: flex;
       gap: 1rem;
     }
+
     &__item {
       align-items: center;
       display: flex;
@@ -35,6 +41,7 @@ $margem-baixo: 0.67rem;
       position: relative;
       padding: 0.5rem 1rem;
     }
+
     &__item::before {
       background-image: $cor-projeto-item;
       background-size: cover;
@@ -48,17 +55,52 @@ $margem-baixo: 0.67rem;
       top: 0px;
     }
   }
+
   &__contato {
     margin-top: 2rem;
+
     &__titulo {
       font-size: 18px;
       font-weight: 500;
       margin-bottom: $margem-baixo;
     }
+
     &__email {
       span {
         font-style: italic;
       }
+    }
+  }
+}
+
+@media screen and (min-width: $tamanho-mobile) {
+  .sobremim {
+    &__resumo {
+      margin-top: 2rem;
+      padding: 0 $margem-mobile;
+    }
+    &__habilidades__itens {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.33rem;
+    }
+  }
+}
+
+@media screen and (min-width: $tamanho-tablet) {
+  .sobremim {
+    &__resumo {
+      margin-top: 0rem;
+      padding: 0 $margem-tablet;
+    }
+  }
+}
+
+@media screen and (min-width: $tamanho-pc) {
+  .sobremim {
+    &__resumo {
+      margin-top: 0;
+      padding: 0 calc($margem * 2);
     }
   }
 }
