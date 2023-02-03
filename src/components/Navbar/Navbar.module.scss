@@ -1,4 +1,5 @@
 @import '@/assets/styles/variaveis';
+@import '@/assets/styles/breakpoints';
 
 $tamanho-logo: 2.5rem;
 
@@ -30,5 +31,23 @@ $tamanho-logo: 2.5rem;
   .link:hover {
     border-bottom: 1px solid white;
     transition: 0.5s;
+  }
+}
+
+@media screen and (min-width: $tamanho-mobile) {
+  .cabecalho {
+    padding: 1rem $margem-mobile;
+  }
+}
+
+@media screen and (min-width: $tamanho-tablet) {
+  .cabecalho {
+    padding: 1rem $margem-tablet;
+  }
+}
+
+@media screen and (min-width: $tamanho-pc) {
+  .cabecalho {
+    padding: 1rem $margem;
   }
 }
