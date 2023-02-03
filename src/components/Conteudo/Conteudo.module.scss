@@ -1,11 +1,17 @@
 @import '@/assets/styles/variaveis';
+@import '@/assets/styles/breakpoints';
 
-$tamanho-imagem: 30rem;
+$tamanho-imagem: 35vw;
+$tamanho-imagem-mobile: 80vw;
+$tamanho-imagem-tablet: 35vw;
 
 .conteudo {
   align-items: center;
   display: flex;
+  flex-wrap: wrap;
   padding: 4rem $margem;
+  padding-bottom: 0;
+
   &__perfil {
     align-items: center;
     border-image-slice: 1;
@@ -17,20 +23,72 @@ $tamanho-imagem: 30rem;
     justify-content: center;
     padding-top: 1rem;
     width: 50%;
+
     &__foto {
       border-radius: 100%;
-      height: $tamanho-imagem;
       object-fit: cover;
-      width: $tamanho-imagem;
     }
+
     &__textos {
       display: flex;
       flex-direction: column;
       gap: 0.33rem;
       text-align: center;
     }
+
     &__nome {
       font-size: 18px;
+    }
+  }
+}
+
+@media screen and (min-width: $tamanho-mobile) {
+  .conteudo {
+    padding: 2rem $margem-mobile;
+    padding-bottom: 0;
+
+    &__perfil {
+      border-bottom: 1px solid;
+      border-right: none;
+      padding-bottom: 2rem;
+      width: 100%;
+
+      &__foto {
+        height: $tamanho-imagem-mobile;
+        max-height: 30rem;
+        max-width: 30rem;
+        width: $tamanho-imagem-mobile;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $tamanho-tablet) {
+  .conteudo {
+    padding: 1rem $margem-tablet;
+
+    &__perfil {
+      border-bottom: none;
+      border-right: 1px solid;
+      width: 50%;
+
+      &__foto {
+        height: $tamanho-imagem-tablet;
+        width: $tamanho-imagem-tablet;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $tamanho-pc) {
+  .conteudo {
+    padding: 4rem $margem;
+
+    &__perfil__foto {
+      height: $tamanho-imagem;
+      max-height: 30rem;
+      max-width: 30rem;
+      width: $tamanho-imagem;
     }
   }
 }
