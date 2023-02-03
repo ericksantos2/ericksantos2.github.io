@@ -15,7 +15,7 @@ export default function Navbar() {
           Github
         </a>
         <a
-          href="https://www.linkedin.com/in/erick-santos-16b54b252/"
+          href="https://www.linkedin.com/in/ericksantos2/"
           target="_blank"
           className={styles.link}
         >
