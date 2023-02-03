@@ -7,8 +7,10 @@ function App() {
   return (
     <>
       <Navbar />
-      <Conteudo />
-      <Sobremim />
+      <main>
+        <Conteudo />
+        <Sobremim />
+      </main>
       <Rodape />
     </>
   );
