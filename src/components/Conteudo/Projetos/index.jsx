@@ -35,20 +35,12 @@ export default function Projetos() {
             className={styles.conteudo__projetos__item}
             key={index}
           >
-            <p
-              className={`${styles.conteudo__projetos__item__texto} ${styles.conteudo__projetos__item__nome}`}
-            >
-              Nome: {projeto.name}
-            </p>
-            <p
-              className={`${styles.conteudo__projetos__item__texto} ${styles.conteudo__projetos__item__descricao}`}
-            >
+            <p>Nome: {projeto.name}</p>
+            <p>
               Descrição:{" "}
               {projeto.description ? projeto.description : "Sem descrição"}
             </p>
-            <p
-              className={`${styles.conteudo__projetos__item__texto} ${styles.conteudo__projetos__item__lastupdate}`}
-            >
+            <p>
               Ultima atualização do projeto em{" "}
               {ultimaAtualização(projeto.pushed_at)}.
             </p>
