@@ -92,3 +92,9 @@ $tamanho-imagem-tablet: 35vw;
     }
   }
 }
+
+@media screen and (min-height: $tamanho-maximo) {
+  .conteudo {
+    min-height: 70vh;
+  }
+}

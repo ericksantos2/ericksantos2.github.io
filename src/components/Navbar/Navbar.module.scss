@@ -51,3 +51,9 @@ $tamanho-logo: 2.5rem;
     padding: 1rem $margem;
   }
 }
+
+@media screen and (min-height: $tamanho-maximo) {
+  .cabecalho {
+    min-height: 5vh;
+  }
+}

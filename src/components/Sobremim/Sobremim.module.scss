@@ -104,3 +104,9 @@ $margem-baixo: 0.67rem;
     }
   }
 }
+
+@media screen and (min-height: $tamanho-maximo) {
+  .sobremim {
+    min-height: 20vh;
+  }
+}
