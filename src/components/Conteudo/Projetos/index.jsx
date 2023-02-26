@@ -30,7 +30,7 @@ export default function Projetos() {
       <div className={styles.conteudo__projetos__itens}>
         {projetos.map((projeto, index) => (
           <a
-            href={projeto.html_url}
+            href={projeto.has_pages === true ? (projeto.name === 'ericksantos2.github.io' ? projeto.html_url : `https://ericksantos2.github.io/${projeto.name}/`) : projeto.html_url}
             target="_blank"
             className={styles.conteudo__projetos__item}
             key={index}
