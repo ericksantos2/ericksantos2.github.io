@@ -1,19 +1,7 @@
+import axios from "axios";
 import styles from "./Projetos.module.scss";
-
-async function conectaApiGithub() {
-  const conexao = await fetch(
-    "https://api.github.com/users/ericksantos2/repos"
-  );
-  return conexao.json();
-}
-
-let projetos = await conectaApiGithub();
-projetos = projetos.sort(
-  (a, b) => new Date(b.pushed_at) - new Date(a.pushed_at)
-);
-if (projetos.length > 5) {
-  projetos = projetos.slice(0, 5);
-}
+import { useEffect } from "react";
+import { useState } from "react";
 
 function ultimaAtualização(textoData) {
   const data = new Date(textoData);
@@ -22,6 +10,24 @@ function ultimaAtualização(textoData) {
 }
 
 export default function Projetos() {
+  const [projetos, setProjetos] = useState([]);
+
+  async function conectaApiGithub() {
+    const { data } = await axios.get('https://api.github.com/users/ericksantos2/repos');
+    let resposta = data;
+    resposta = resposta.sort(
+      (a, b) => new Date(b.pushed_at) - new Date(a.pushed_at)
+    )
+    if (resposta.length > 5) {
+      resposta = resposta.slice(0, 5);
+    }
+    setProjetos(resposta);
+  }
+
+  useEffect(() => {
+    conectaApiGithub();
+  }, [])
+
   return (
     <section className={styles.conteudo__projetos}>
       <h1 className={styles.conteudo__projetos__titulo} onClick={() => {}}>
