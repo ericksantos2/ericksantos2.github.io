@@ -3,16 +3,25 @@
     "nome": "React",
     "id": "react",
     "icon": "SiReact"
+  },{
+    "nome": "Redux & Redux Saga",
+    "id": "redux",
+    "icon": "SiRedux"
   },
   {
-    "nome": "HTML",
-    "id": "html",
-    "icon": "SiHtml5"
+    "nome": "Node.js",
+    "id": "nodejs",
+    "icon": "SiNodedotjs"
   },
   {
-    "nome": "CSS",
-    "id": "css",
-    "icon": "SiCss3"
+    "nome": "Sass",
+    "id": "sass",
+    "icon": "SiSass"
+  },
+  {
+    "nome": "Styled Components",
+    "id": "styledcomponents",
+    "icon": "SiStyledcomponents"
   },
   {
     "nome": "JavaScript",
@@ -23,6 +32,16 @@
     "nome": "TypeScript",
     "id": "typescript",
     "icon": "SiTypescript"
+  },
+  {
+    "nome": "HTML",
+    "id": "html",
+    "icon": "SiHtml5"
+  },
+  {
+    "nome": "CSS",
+    "id": "css",
+    "icon": "SiCss3"
   },
   {
     "nome": "Github",
