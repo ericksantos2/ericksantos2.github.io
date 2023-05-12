@@ -1,9 +1,20 @@
 import styles from "./Sobremim.module.scss";
 import * as Icones from "react-icons/si";
-import habilidades from "./habilidades.json";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function Sobremim() {
+  const [habilidades, setHabilidades] = useState([]);
+
+  async function conectaApiHabilidades() {
+    const resposta = await axios.get('https://raw.githubusercontent.com/ericksantos2/ericksantos2.github.io/master/src/components/Sobremim/habilidades.json');
+    setHabilidades(resposta.data);
+  }
+
+  useEffect(() => {
+    conectaApiHabilidades()
+  }, [])
+
   return (
     <div className={styles.sobremim} id="sobremim">
       <div className={styles.sobremim__resumo}>
