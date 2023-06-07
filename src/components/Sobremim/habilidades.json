@@ -9,6 +9,11 @@
     "icon": "SiRedux"
   },
   {
+    "nome": "Next.js",
+    "id": "nextjs",
+    "icon": "SiNextdotjs"
+  },
+  {
     "nome": "Node.js",
     "id": "nodejs",
     "icon": "SiNodedotjs"
