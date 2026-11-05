@@ -54,12 +54,9 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     setTheme(nextTheme);
   };
 
-  // Previne flickering de hidratação
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme, setTheme }}>
-      <div className={mounted ? "" : "invisible"}>
-        {children}
-      </div>
+      {children}
     </ThemeContext.Provider>
   );
 }
