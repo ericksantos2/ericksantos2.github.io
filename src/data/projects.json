@@ -1,0 +1,77 @@
+[
+  {
+    "id": "1",
+    "title": "Minimalist Task OS",
+    "description": "Sistema de gestão de tarefas com foco em teclado, sincronização offline local-first e estética neobrutalista monocromática.",
+    "category": "Full-Stack",
+    "tags": ["Next.js", "TypeScript", "TailwindCSS", "IndexedDB", "Zustand"],
+    "featured": true,
+    "year": "2026",
+    "role": "Lead Developer & UI Designer",
+    "githubUrl": "https://github.com/usuario/task-os",
+    "liveUrl": "https://task-os-demo.vercel.app",
+    "status": "Concluído"
+  },
+  {
+    "id": "2",
+    "title": "Notion API Headless CMS",
+    "description": "Engine de sincronização bidirecional que transforma tabelas do Notion em APIs REST ultrarrápidas com cache em memória e webhooks.",
+    "category": "Backend",
+    "tags": ["Node.js", "TypeScript", "Notion SDK", "Redis", "Docker"],
+    "featured": true,
+    "year": "2025",
+    "role": "Backend Architect",
+    "githubUrl": "https://github.com/usuario/notion-sync-cms",
+    "liveUrl": "https://notion-cms-docs.dev",
+    "status": "Concluído"
+  },
+  {
+    "id": "3",
+    "title": "FinTrack Mobile",
+    "description": "Aplicativo de finanças pessoais com criptografia de ponta a ponta, categorização automática por IA e exportação para planilhas.",
+    "category": "Mobile",
+    "tags": ["React Native", "Expo", "SQLite", "Tailwind Native"],
+    "featured": true,
+    "year": "2025",
+    "role": "Mobile Developer",
+    "githubUrl": "https://github.com/usuario/fintrack-app",
+    "status": "Concluído"
+  },
+  {
+    "id": "4",
+    "title": "HyperDocs - Markdown Reader",
+    "description": "Leitor e documentador de código minimalista com suporte a diagramas Mermaid, renderização KaTeX e atalhos VIM.",
+    "category": "Frontend",
+    "tags": ["React", "Vite", "TailwindCSS", "KaTeX", "Mermaid.js"],
+    "featured": false,
+    "year": "2025",
+    "role": "Frontend Developer",
+    "githubUrl": "https://github.com/usuario/hyperdocs",
+    "liveUrl": "https://hyperdocs-reader.dev",
+    "status": "Concluído"
+  },
+  {
+    "id": "5",
+    "title": "DevMetrics CLI",
+    "description": "Ferramenta de linha de comando para medir performance de builds, tempo de testes e complexidade ciclomática em repositórios Git.",
+    "category": "Ferramenta",
+    "tags": ["Go", "CLI", "Git Hooks", "Docker"],
+    "featured": false,
+    "year": "2024",
+    "role": "DevOps Engineer",
+    "githubUrl": "https://github.com/usuario/devmetrics-cli",
+    "status": "Concluído"
+  },
+  {
+    "id": "6",
+    "title": "AuthMatrix Guard",
+    "description": "Microsserviço de autenticação distribuída com suporte a Passkeys (WebAuthn), JWT rotativo e rate-limiting por IP em memória.",
+    "category": "Backend",
+    "tags": ["Rust", "Actix-Web", "WebAuthn", "PostgreSQL"],
+    "featured": false,
+    "year": "2024",
+    "role": "Security Engineer",
+    "githubUrl": "https://github.com/usuario/authmatrix-guard",
+    "status": "Em Progresso"
+  }
+]
