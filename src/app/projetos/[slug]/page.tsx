@@ -4,6 +4,9 @@ import { notFound } from "next/navigation";
 import { getProjects, getProjectBySlug } from "@/lib/notion";
 import { MarkdownContent } from "@/components/MarkdownContent";
 import { GithubIcon } from "@/components/Icons";
+import { Navbar } from "@/components/Navbar";
+import { Footer } from "@/components/Footer";
+import { ThemeProvider } from "@/components/ThemeProvider";
 import {
   ArrowLeft,
   ArrowUpRight,
@@ -93,18 +96,22 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
   const youtubeId = getYouTubeVideoId(project.showcaseUrl);
 
   return (
-    <main className="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-black dark:text-white transition-colors duration-200">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-10 md:py-16">
-        {/* Botão de retorno */}
-        <div className="mb-8">
-          <Link
-            href="/#projetos"
-            className="neo-btn inline-flex items-center gap-2 px-4 py-2 font-mono text-xs font-bold uppercase hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            <span>← Voltar para o Portfólio</span>
-          </Link>
-        </div>
+    <ThemeProvider>
+      <div className="min-h-screen flex flex-col bg-neutral-100 dark:bg-[#0a0a0a] text-black dark:text-white transition-colors duration-200">
+        <Navbar />
+
+        <main className="flex-1 py-10 md:py-16">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6">
+            {/* Botão de retorno */}
+            <div className="mb-8">
+              <Link
+                href="/#projetos"
+                className="neo-btn inline-flex items-center gap-2 px-4 py-2 font-mono text-xs font-bold uppercase hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
+              >
+                <ArrowLeft className="w-4 h-4" />
+                <span>← Voltar para o Portfólio</span>
+              </Link>
+            </div>
 
         {/* Hero Card do Projeto */}
         <header className="neo-card p-6 sm:p-8 md:p-10 mb-10 bg-white dark:bg-neutral-900">
@@ -268,25 +275,29 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
           </div>
         </section>
 
-        {/* Rodapé da Página do Projeto */}
-        <div className="pt-8 border-t-2 border-black dark:border-white flex flex-col sm:flex-row items-center justify-between gap-4">
-          <Link
-            href="/#projetos"
-            className="neo-btn inline-flex items-center gap-2 px-5 py-2.5 font-mono text-xs font-bold uppercase hover:bg-neutral-100 dark:hover:bg-neutral-800"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            <span>Ver Outros Projetos</span>
-          </Link>
+            {/* Rodapé da Página do Projeto */}
+            <div className="pt-8 border-t-2 border-black dark:border-white flex flex-col sm:flex-row items-center justify-between gap-4">
+              <Link
+                href="/#projetos"
+                className="neo-btn inline-flex items-center gap-2 px-5 py-2.5 font-mono text-xs font-bold uppercase hover:bg-neutral-100 dark:hover:bg-neutral-800"
+              >
+                <ArrowLeft className="w-4 h-4" />
+                <span>Ver Outros Projetos</span>
+              </Link>
 
-          <Link
-            href="/#contato"
-            className="neo-btn-primary inline-flex items-center gap-2 px-5 py-2.5 font-mono text-xs font-bold uppercase"
-          >
-            <span>Entrar em Contato</span>
-            <ArrowUpRight className="w-4 h-4" />
-          </Link>
-        </div>
+              <Link
+                href="/#contato"
+                className="neo-btn-primary inline-flex items-center gap-2 px-5 py-2.5 font-mono text-xs font-bold uppercase"
+              >
+                <span>Entrar em Contato</span>
+                <ArrowUpRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </div>
+        </main>
+
+        <Footer />
       </div>
-    </main>
+    </ThemeProvider>
   );
 }

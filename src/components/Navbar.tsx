@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import { useTheme } from "./ThemeProvider";
 import { Sun, Moon, Menu, X } from "lucide-react";
 
@@ -13,15 +14,15 @@ export function Navbar() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
         {/* Brand / Logo */}
         <div className="flex items-center gap-3">
-          <a
-            href="#"
+          <Link
+            href="/"
             className="flex items-center gap-2 font-mono font-black text-lg md:text-xl tracking-tight group"
           >
             <span className="px-2 py-1 bg-black text-white dark:bg-white dark:text-black border-2 border-black dark:border-white transition-transform group-hover:-translate-x-0.5 group-hover:-translate-y-0.5">
               ED
             </span>
             <span className="uppercase tracking-wider">ERICK.DEV</span>
-          </a>
+          </Link>
 
           {/* Status badge */}
           <div className="hidden lg:flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-mono font-bold uppercase bg-neutral-100 dark:bg-neutral-900 border border-black dark:border-white">
@@ -32,30 +33,30 @@ export function Navbar() {
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-6 font-mono text-sm font-bold uppercase">
-          <a
-            href="#projetos"
+          <Link
+            href="/#projetos"
             className="hover:underline underline-offset-4 decoration-2 transition-all"
           >
             Projetos
-          </a>
-          <a
-            href="#stack"
+          </Link>
+          <Link
+            href="/#stack"
             className="hover:underline underline-offset-4 decoration-2 transition-all"
           >
             Stack
-          </a>
-          <a
-            href="#sobre"
+          </Link>
+          <Link
+            href="/#sobre"
             className="hover:underline underline-offset-4 decoration-2 transition-all"
           >
             Sobre
-          </a>
-          <a
-            href="#contato"
+          </Link>
+          <Link
+            href="/#contato"
             className="hover:underline underline-offset-4 decoration-2 transition-all"
           >
             Contato
-          </a>
+          </Link>
         </nav>
 
         {/* Actions (Theme Toggle + Mobile Menu) */}
@@ -88,34 +89,34 @@ export function Navbar() {
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
         <div className="md:hidden border-t-2 border-black dark:border-white bg-white dark:bg-neutral-900 p-4 space-y-3 font-mono text-sm font-bold uppercase">
-          <a
-            href="#projetos"
+          <Link
+            href="/#projetos"
             onClick={() => setMobileMenuOpen(false)}
             className="block p-2 border border-black dark:border-white hover:bg-neutral-100 dark:hover:bg-neutral-800"
           >
             // 01. Projetos
-          </a>
-          <a
-            href="#stack"
+          </Link>
+          <Link
+            href="/#stack"
             onClick={() => setMobileMenuOpen(false)}
             className="block p-2 border border-black dark:border-white hover:bg-neutral-100 dark:hover:bg-neutral-800"
           >
             // 02. Stack Técnica
-          </a>
-          <a
-            href="#sobre"
+          </Link>
+          <Link
+            href="/#sobre"
             onClick={() => setMobileMenuOpen(false)}
             className="block p-2 border border-black dark:border-white hover:bg-neutral-100 dark:hover:bg-neutral-800"
           >
             // 03. Sobre Mim
-          </a>
-          <a
-            href="#contato"
+          </Link>
+          <Link
+            href="/#contato"
             onClick={() => setMobileMenuOpen(false)}
             className="block p-2 border border-black dark:border-white hover:bg-neutral-100 dark:hover:bg-neutral-800"
           >
             // 04. Contato
-          </a>
+          </Link>
         </div>
       )}
     </header>
