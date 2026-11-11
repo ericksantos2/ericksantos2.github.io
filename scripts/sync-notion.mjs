@@ -319,6 +319,11 @@ async function run() {
       })
     );
 
+    const dataDir = path.resolve(__dirname, "../src/data");
+    if (!fs.existsSync(dataDir)) {
+      fs.mkdirSync(dataDir, { recursive: true });
+    }
+
     const outputPath = path.resolve(__dirname, "../src/data/projects.json");
     fs.writeFileSync(outputPath, JSON.stringify(projects, null, 2), "utf-8");
 
