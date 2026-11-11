@@ -54,7 +54,7 @@ export function ContactSection({ contactData }: ContactSectionProps) {
         <div className="neo-card p-8 md:p-12 max-w-4xl mx-auto">
           {/* Header */}
           <div className="border-b-2 border-black dark:border-white pb-6 mb-8 text-center md:text-left">
-            <div className="inline-block px-2.5 py-0.5 mb-2 font-mono text-xs font-bold uppercase bg-neutral-200 dark:bg-neutral-800 border border-black dark:border-white">
+            <div className="inline-block w-fit px-2.5 py-0.5 mb-2 font-mono text-xs font-bold uppercase bg-[#D4FF00] text-black border border-black shadow-[2px_2px_0px_#000]">
               // 04. CONEXÃO DIRETA
             </div>
             <h2 className="text-3xl sm:text-5xl md:text-6xl font-black uppercase tracking-tight">
@@ -92,10 +92,10 @@ export function ContactSection({ contactData }: ContactSectionProps) {
 
               <a
                 href={`mailto:${email}`}
-                className="neo-btn-primary flex-1 sm:flex-initial px-4 py-2 font-mono text-xs font-bold uppercase flex items-center justify-center gap-1.5"
+                className="flex-1 sm:flex-initial px-4 py-2 font-mono text-xs font-bold uppercase flex items-center justify-center gap-1.5 bg-[#D4FF00] text-black border-2 border-black shadow-[3px_3px_0px_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_#000] transition-all"
               >
                 <span>Enviar</span>
-                <ArrowUpRight className="w-4 h-4" />
+                <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
               </a>
             </div>
           </div>
@@ -112,13 +112,13 @@ export function ContactSection({ contactData }: ContactSectionProps) {
                 href={link.url}
                 target="_blank"
                 rel="noreferrer"
-                className="neo-card p-4 flex items-center justify-between group hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all"
+                className="neo-card p-4 flex items-center justify-between group hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all dark:hover:border-[#D4FF00]"
               >
                 <div className="flex items-center gap-2 font-mono text-xs font-bold uppercase">
                   {getIconForLink(link.name)}
                   <span>{link.name}</span>
                 </div>
-                <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                <ArrowUpRight className="w-4 h-4 text-black dark:text-white group-hover:text-black dark:group-hover:text-[#D4FF00] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
               </a>
             ))}
           </div>

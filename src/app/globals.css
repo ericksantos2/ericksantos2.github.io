@@ -11,17 +11,19 @@
   --shadow-color: #000000;
   --card-bg: #ffffff;
   --tag-bg: #e5e5e5;
+  --accent: #D4FF00;
 }
 
 .dark {
-  --bg-primary: #0a0a0a;
-  --bg-secondary: #141414;
-  --text-primary: #ffffff;
-  --text-secondary: #a3a3a3;
-  --border-color: #ffffff;
-  --shadow-color: #ffffff;
-  --card-bg: #141414;
+  --bg-primary: #121212;
+  --bg-secondary: #1a1a1a;
+  --text-primary: #e0e0e0;
+  --text-secondary: #9e9e9e;
+  --border-color: #404040;
+  --shadow-color: #333333;
+  --card-bg: #181818;
   --tag-bg: #262626;
+  --accent: #D4FF00;
 }
 
 html {
@@ -41,14 +43,14 @@ body {
   border: 2px solid #000000;
 }
 .dark .neo-border {
-  border: 2px solid #ffffff;
+  border: 2px solid #525252;
 }
 
 .neo-border-thick {
   border: 3px solid #000000;
 }
 .dark .neo-border-thick {
-  border: 3px solid #ffffff;
+  border: 3px solid #525252;
 }
 
 /* Shadows */
@@ -56,21 +58,21 @@ body {
   box-shadow: 4px 4px 0px 0px #000000;
 }
 .dark .neo-shadow {
-  box-shadow: 4px 4px 0px 0px #ffffff;
+  box-shadow: 4px 4px 0px 0px #383838;
 }
 
 .neo-shadow-lg {
   box-shadow: 6px 6px 0px 0px #000000;
 }
 .dark .neo-shadow-lg {
-  box-shadow: 6px 6px 0px 0px #ffffff;
+  box-shadow: 6px 6px 0px 0px #383838;
 }
 
 .neo-shadow-sm {
   box-shadow: 2px 2px 0px 0px #000000;
 }
 .dark .neo-shadow-sm {
-  box-shadow: 2px 2px 0px 0px #ffffff;
+  box-shadow: 2px 2px 0px 0px #383838;
 }
 
 /* Buttons and interactive elements */
@@ -82,10 +84,10 @@ body {
   transition: all 0.1s ease;
 }
 .dark .neo-btn {
-  border: 2px solid #ffffff;
-  box-shadow: 4px 4px 0px 0px #ffffff;
-  background-color: #171717;
-  color: #ffffff;
+  border: 2px solid #525252;
+  box-shadow: 4px 4px 0px 0px #383838;
+  background-color: #1f1f1f;
+  color: #e5e5e5;
 }
 
 .neo-btn:hover {
@@ -93,7 +95,7 @@ body {
   box-shadow: 6px 6px 0px 0px #000000;
 }
 .dark .neo-btn:hover {
-  box-shadow: 6px 6px 0px 0px #ffffff;
+  box-shadow: 6px 6px 0px 0px #525252;
 }
 
 .neo-btn:active {
@@ -101,32 +103,32 @@ body {
   box-shadow: 2px 2px 0px 0px #000000;
 }
 .dark .neo-btn:active {
-  box-shadow: 2px 2px 0px 0px #ffffff;
+  box-shadow: 2px 2px 0px 0px #383838;
 }
 
-/* Inverted buttons (solid black / solid white) */
+/* Inverted buttons (solid black / solid white / accent) */
 .neo-btn-primary {
   border: 2px solid #000000;
   box-shadow: 4px 4px 0px 0px #000000;
-  background-color: #000000;
-  color: #ffffff;
+  background-color: #D4FF00;
+  color: #000000;
   transition: all 0.1s ease;
 }
 .dark .neo-btn-primary {
-  border: 2px solid #ffffff;
-  box-shadow: 4px 4px 0px 0px #ffffff;
-  background-color: #ffffff;
+  border: 2px solid #D4FF00;
+  box-shadow: 4px 4px 0px 0px #D4FF00;
+  background-color: #D4FF00;
   color: #000000;
 }
 
 .neo-btn-primary:hover {
   transform: translate(-2px, -2px);
   box-shadow: 6px 6px 0px 0px #000000;
-  background-color: #262626;
+  background-color: #c2e600;
 }
 .dark .neo-btn-primary:hover {
-  box-shadow: 6px 6px 0px 0px #ffffff;
-  background-color: #e5e5e5;
+  box-shadow: 6px 6px 0px 0px #D4FF00;
+  background-color: #e2ff40;
 }
 
 .neo-btn-primary:active {
@@ -134,7 +136,7 @@ body {
   box-shadow: 2px 2px 0px 0px #000000;
 }
 .dark .neo-btn-primary:active {
-  box-shadow: 2px 2px 0px 0px #ffffff;
+  box-shadow: 2px 2px 0px 0px #D4FF00;
 }
 
 /* Cards */
@@ -146,10 +148,10 @@ body {
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 .dark .neo-card {
-  border: 2px solid #ffffff;
-  box-shadow: 5px 5px 0px 0px #ffffff;
-  background-color: #171717;
-  color: #ffffff;
+  border: 2px solid #454545;
+  box-shadow: 5px 5px 0px 0px #2a2a2a;
+  background-color: #1a1a1a;
+  color: #dedede;
 }
 
 /* Grid background pattern */
@@ -161,8 +163,26 @@ body {
 }
 .dark .bg-grid-pattern {
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.07) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+}
+
+/* Suavização de contraste para classes utilitárias no modo escuro */
+.dark *:not([class*="border-\[#"]):not([class*="dark:border-\[#"]).border-black,
+.dark .dark\:border-white {
+  border-color: #404040;
+}
+
+.dark .dark\:text-white {
+  color: #e5e5e5;
+}
+
+.dark .dark\:bg-white {
+  background-color: #d4d4d4;
+}
+
+.dark [class*="dark:shadow-"] {
+  --tw-shadow-color: #262626;
 }
 
 @keyframes marquee {

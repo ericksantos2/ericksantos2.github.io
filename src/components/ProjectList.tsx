@@ -80,7 +80,7 @@ export function ProjectList({
                   onClick={() => setSelectedCategory(cat)}
                   className={`px-3 py-1.5 font-mono text-xs font-bold uppercase transition-all ${
                     isActive
-                      ? "bg-black text-white dark:bg-white dark:text-black border-2 border-black dark:border-white neo-shadow-sm"
+                      ? "bg-[#D4FF00] text-black border-2 border-black dark:border-black shadow-[3px_3px_0px_#000] dark:shadow-[3px_3px_0px_#262626]"
                       : "bg-neutral-100 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 border border-black dark:border-white hover:bg-neutral-200 dark:hover:bg-neutral-700"
                   }`}
                 >

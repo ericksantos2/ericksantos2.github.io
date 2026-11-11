@@ -34,7 +34,7 @@ export function Hero({ projectsCount, heroText }: HeroProps) {
               <h1 className="text-4xl sm:text-6xl md:text-7xl font-black uppercase tracking-tighter leading-[0.9]">
                 CÓDIGO PURO.
                 <br />
-                <span className="inline-block bg-black text-white dark:bg-white dark:text-black px-2 md:px-3 py-1 mt-1 neo-shadow">
+                <span className="inline-block w-fit bg-[#D4FF00] text-black border-2 border-black dark:border-black px-3 pt-1 pb-2.5 mt-1 shadow-[4px_4px_0px_#262626]">
                   SEM DISTRAÇÕES.
                 </span>
               </h1>

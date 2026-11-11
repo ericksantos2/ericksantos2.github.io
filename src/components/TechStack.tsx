@@ -80,7 +80,7 @@ export function TechStack({ stacks }: TechStackProps) {
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Section Header */}
         <div className="mb-12">
-          <div className="inline-block px-2.5 py-0.5 mb-2 font-mono text-xs font-bold uppercase bg-neutral-200 dark:bg-neutral-800 border border-black dark:border-white">
+          <div className="inline-block w-fit px-2.5 py-0.5 mb-2 font-mono text-xs font-bold uppercase bg-[#D4FF00] text-black border border-black shadow-[2px_2px_0px_#000]">
             // 02. HABILIDADES & FERRAMENTAS
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight">
@@ -102,14 +102,14 @@ export function TechStack({ stacks }: TechStackProps) {
                 {/* Header */}
                 <div className="flex items-center justify-between border-b-2 border-black dark:border-white pb-4 mb-4">
                   <div className="flex items-center gap-3">
-                    <div className="p-2 bg-black text-white dark:bg-white dark:text-black">
+                    <div className="p-2 bg-[#D4FF00] text-black border border-black shadow-[2px_2px_0px_#000]">
                       {getIconForStack(item.title)}
                     </div>
                     <h3 className="font-mono text-base md:text-lg font-black uppercase tracking-tight">
                       {item.title}
                     </h3>
                   </div>
-                  <span className="font-mono text-xs font-bold text-neutral-400">
+                  <span className="font-mono text-xs font-black px-1.5 py-0.5 bg-[#D4FF00] text-black border border-black shadow-[2px_2px_0px_#000]">
                     [0{index + 1}]
                   </span>
                 </div>

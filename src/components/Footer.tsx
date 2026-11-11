@@ -27,11 +27,11 @@ export function Footer() {
 
           <button
             onClick={scrollToTop}
-            className="neo-btn p-2 hover:bg-neutral-100 dark:hover:bg-neutral-800"
+            className="p-2 bg-[#D4FF00] text-black border-2 border-black shadow-[3px_3px_0px_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_#000] transition-all cursor-pointer"
             aria-label="Voltar ao topo"
             title="Voltar ao topo"
           >
-            <ArrowUp className="w-4 h-4" />
+            <ArrowUp className="w-4 h-4 stroke-[2.5]" />
           </button>
         </div>
       </div>

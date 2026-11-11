@@ -86,8 +86,8 @@ function StatusBadge({ status }: { status: string }) {
 
   if (norm.includes("conclui") || norm.includes("concluí")) {
     return (
-      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 border border-black dark:border-white bg-green-50 dark:bg-green-950/40 text-black dark:text-white font-mono text-xs font-bold uppercase">
-        <CheckCircle2 className="w-3.5 h-3.5 text-green-600 dark:text-green-400 shrink-0" />
+      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 border border-black dark:border-white bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 font-mono text-xs font-bold uppercase">
+        <span className="w-2 h-2 rounded-full bg-[#D4FF00] ring-1 ring-black/70 dark:ring-0 shrink-0" />
         <span>Concluído</span>
       </span>
     );
@@ -152,11 +152,11 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
           {/* Barra superior de status & metadados */}
           <div className="flex flex-wrap items-center justify-between gap-3 border-b-2 border-black dark:border-white pb-4 mb-6">
             <div className="flex items-center gap-2">
-              <span className="font-mono text-xs font-black px-2.5 py-1 bg-black text-white dark:bg-white dark:text-black uppercase">
+              <span className="font-mono text-xs font-black px-2.5 py-1 bg-[#D4FF00] text-black border border-black shadow-[2px_2px_0px_#000] uppercase">
                 {project.category}
               </span>
               {project.featured && (
-                <span className="font-mono text-xs font-bold px-2 py-0.5 bg-yellow-300 text-black border border-black inline-flex items-center gap-1">
+                <span className="font-mono text-xs font-bold px-2 py-0.5 bg-[#D4FF00] text-black border border-black shadow-[2px_2px_0px_#000] inline-flex items-center gap-1">
                   <Sparkles className="w-3 h-3" /> DESTAQUE
                 </span>
               )}

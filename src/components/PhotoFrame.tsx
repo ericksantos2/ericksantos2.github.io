@@ -43,7 +43,7 @@ export function PhotoFrame() {
           {/* Rodapé da moldura */}
           <div className="mt-3 pt-2 border-t-2 border-black dark:border-white flex items-center justify-between font-mono text-xs font-bold">
             <div className="flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-black dark:bg-white animate-pulse" />
+              <span className="w-2 h-2 rounded-full bg-[#D4FF00] ring-1 ring-black/80 dark:ring-0 animate-pulse" />
               <span className="uppercase text-[11px]">DISPONÍVEL</span>
             </div>
             <span className="text-[11px] uppercase text-neutral-500">

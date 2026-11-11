@@ -22,7 +22,7 @@ export function About({ aboutParagraphs, principles, experiences, education }: A
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Section Header */}
         <div className="mb-10">
-          <div className="inline-block px-2.5 py-0.5 mb-2 font-mono text-xs font-bold uppercase bg-neutral-200 dark:bg-neutral-800 border border-black dark:border-white">
+          <div className="inline-block w-fit px-2.5 py-0.5 mb-2 font-mono text-xs font-bold uppercase bg-[#D4FF00] text-black border border-black shadow-[2px_2px_0px_#000]">
             // 03. BIO & FILOSOFIA
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight">
@@ -75,22 +75,22 @@ export function About({ aboutParagraphs, principles, experiences, education }: A
                 {principles && principles.length > 0 ? (
                   principles.map((item, idx) => (
                     <li key={idx} className="flex items-start gap-2">
-                      <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5 text-black dark:text-white" />
+                      <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5 text-[#D4FF00]" />
                       <span>{renderInline(item)}</span>
                     </li>
                   ))
                 ) : (
                   <>
                     <li className="flex items-start gap-2">
-                      <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5 text-black dark:text-white" />
+                      <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5 text-[#D4FF00]" />
                       <span>Código limpo, tipado e com zero dependências inúteis.</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5 text-black dark:text-white" />
+                      <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5 text-[#D4FF00]" />
                       <span>Design monocromático de alto contraste e fácil leitura.</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5 text-black dark:text-white" />
+                      <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5 text-[#D4FF00]" />
                       <span>Deploy 100% estático, sem custo de servidor para o portfólio.</span>
                     </li>
                   </>
@@ -158,7 +158,7 @@ export function About({ aboutParagraphs, principles, experiences, education }: A
                           <div className="space-y-1.5">
                             {edu.type && (
                               <div>
-                                <span className="inline-block font-mono text-[10px] font-bold px-2 py-0.5 bg-black text-white dark:bg-white dark:text-black uppercase">
+                                <span className="inline-block font-mono text-[10px] font-black px-2 py-0.5 bg-[#D4FF00] text-black border border-black shadow-[2px_2px_0px_#000] uppercase">
                                   {edu.type}
                                 </span>
                               </div>

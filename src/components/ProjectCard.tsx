@@ -16,12 +16,12 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
   const projectHref = `/projetos/${project.slug}`;
 
   return (
-    <article className="neo-card flex flex-col justify-between p-5 md:p-6 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[7px_7px_0px_#000] dark:hover:shadow-[7px_7px_0px_#fff] transition-all bg-white dark:bg-neutral-900 group">
+    <article className="neo-card flex flex-col justify-between p-5 md:p-6 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[7px_7px_0px_#000] dark:hover:shadow-[7px_7px_0px_#383838] hover:border-black dark:hover:border-neutral-500 transition-all bg-white dark:bg-neutral-900 group">
       <div>
         {/* Top Header Row */}
         <div className="flex items-center justify-between gap-2 border-b-2 border-black dark:border-white pb-3 mb-4">
           <div className="flex items-center gap-2">
-            <span className="font-mono text-xs font-black px-2 py-0.5 bg-black text-white dark:bg-white dark:text-black">
+            <span className="font-mono text-xs font-black px-2 py-0.5 bg-[#D4FF00] text-black border border-black shadow-[2px_2px_0px_#000]">
               #{indexStr}
             </span>
             <span className="font-mono text-xs font-bold uppercase tracking-wider px-2 py-0.5 bg-neutral-200 dark:bg-neutral-800 border border-black dark:border-white">
@@ -36,8 +36,8 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
               const norm = project.status?.toLowerCase().trim() || "";
               if (norm.includes("conclui") || norm.includes("concluí")) {
                 return (
-                  <span className="inline-flex items-center gap-1.5 text-black dark:text-white">
-                    <span className="w-1.5 h-1.5 rounded-full bg-green-500" />
+                  <span className="inline-flex items-center gap-1.5 text-neutral-600 dark:text-neutral-400">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#D4FF00] ring-1 ring-black/70 dark:ring-0" />
                     <span>Concluído</span>
                   </span>
                 );
@@ -122,7 +122,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
       <div className="pt-4 border-t-2 border-black dark:border-white flex flex-wrap items-center justify-between gap-2">
         <Link
           href={projectHref}
-          className="neo-btn inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono font-bold uppercase hover:bg-neutral-100 dark:hover:bg-neutral-800"
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono font-bold uppercase transition-all bg-[#D4FF00] text-black border-2 border-black dark:border-[#D4FF00] shadow-[3px_3px_0px_#000] dark:shadow-[3px_3px_0px_#D4FF00] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_#000] dark:hover:shadow-[5px_5px_0px_#D4FF00]"
           title="Ver página completa do projeto"
         >
           <span>Página Completa</span>

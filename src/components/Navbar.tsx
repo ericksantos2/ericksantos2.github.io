@@ -10,7 +10,7 @@ export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 w-full bg-white dark:bg-black border-b-2 border-black dark:border-white neo-shadow-sm">
+    <header className="sticky top-0 z-40 w-full bg-white dark:bg-[#121212] border-b-2 border-black dark:!border-b-[#D4FF00] neo-shadow-sm">
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
         {/* Brand / Logo */}
         <Link
@@ -55,7 +55,7 @@ export function Navbar() {
         <div className="flex items-center gap-2 sm:gap-3">
           {/* Status badge */}
           <div className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-mono font-bold uppercase bg-neutral-100 dark:bg-neutral-900 border border-black dark:border-white">
-            <span className="w-2 h-2 rounded-full bg-black dark:bg-white animate-pulse" />
+            <span className="w-2 h-2 rounded-full bg-[#D4FF00] ring-1 ring-black/80 dark:ring-0 animate-pulse" />
             <span>DISPONÍVEL</span>
           </div>
 
