@@ -197,7 +197,7 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
                 href={project.githubUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="neo-btn inline-flex items-center gap-2 px-4 py-2 font-mono text-xs font-bold uppercase hover:bg-neutral-100 dark:hover:bg-neutral-800"
+                className="inline-flex items-center gap-2 px-4 py-2 font-mono text-xs font-bold uppercase transition-all bg-[#D4FF00] text-black border-2 border-black shadow-[3px_3px_0px_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_#000]"
               >
                 <GithubIcon className="w-4 h-4" />
                 <span>Ver Código no GitHub</span>
@@ -209,7 +209,7 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
                 href={project.liveUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="neo-btn-primary inline-flex items-center gap-2 px-4 py-2 font-mono text-xs font-bold uppercase"
+                className="neo-btn inline-flex items-center gap-2 px-4 py-2 font-mono text-xs font-bold uppercase hover:bg-neutral-100 dark:hover:bg-neutral-800"
               >
                 <span>Acessar Demo Online</span>
                 <ArrowUpRight className="w-4 h-4" />
@@ -221,7 +221,7 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
                 href="#video-showcase"
                 className="neo-btn inline-flex items-center gap-2 px-4 py-2 font-mono text-xs font-bold uppercase hover:bg-neutral-100 dark:hover:bg-neutral-800"
               >
-                <Play className="w-4 h-4 fill-current text-red-600 dark:text-red-400" />
+                <Play className="w-4 h-4 fill-current text-neutral-800 dark:text-neutral-200" />
                 <span>Vídeo Showcase</span>
                 <ArrowDown className="w-3.5 h-3.5" />
               </a>
@@ -252,7 +252,7 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
         {/* Vídeo Embed do YouTube se houver */}
         {youtubeId && (
           <section id="video-showcase" className="mb-10 scroll-mt-24">
-            <div className="inline-block px-2.5 py-0.5 mb-3 font-mono text-xs font-bold uppercase bg-neutral-200 dark:bg-neutral-800 border border-black dark:border-white">
+            <div className="inline-block w-fit px-2.5 py-0.5 mb-3 font-mono text-xs font-bold uppercase bg-[#D4FF00] text-black border border-black shadow-[2px_2px_0px_#000]">
               // VÍDEO DE APRESENTAÇÃO
             </div>
             <div className="aspect-video w-full border-2 border-black dark:border-white neo-shadow overflow-hidden bg-black">
