@@ -1,4 +1,5 @@
 import React from "react";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getProjects, getProjectBySlug } from "@/lib/notion";
@@ -31,6 +32,39 @@ export async function generateStaticParams() {
   return projects.map((p) => ({
     slug: p.slug,
   }));
+}
+
+export async function generateMetadata({
+  params,
+}: ProjectDetailPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const project = await getProjectBySlug(slug);
+
+  if (!project) {
+    return {
+      title: "Projeto Não Encontrado",
+    };
+  }
+
+  return {
+    title: project.title,
+    description: project.description,
+    keywords: project.tags,
+    alternates: {
+      canonical: `/projetos/${project.slug}`,
+    },
+    openGraph: {
+      type: "article",
+      url: `https://ericksantos2.github.io/projetos/${project.slug}`,
+      title: `${project.title} // Erick Santos`,
+      description: project.description,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${project.title} // Erick Santos`,
+      description: project.description,
+    },
+  };
 }
 
 /**

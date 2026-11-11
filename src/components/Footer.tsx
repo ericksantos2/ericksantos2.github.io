@@ -13,10 +13,10 @@ export function Footer() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs">
         <div>
           <div className="font-bold uppercase tracking-wider text-black dark:text-white">
-            ERICK // PORTFÓLIO NEOBRUTALISTA
+            ERICK // PORTFÓLIO
           </div>
           <div className="text-neutral-500 dark:text-neutral-400 mt-1">
-            Notion Headless CMS • Estático para GitHub Pages • Sem rastreadores.
+            Desenvolvido com Next.js & Notion Headless CMS.
           </div>
         </div>
 
