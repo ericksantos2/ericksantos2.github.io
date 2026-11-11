@@ -276,20 +276,6 @@ export async function getProjects(): Promise<{
 
     const response = await res.json();
 
-    // 🕵️‍♂️ CONSOLE.LOG DOS DADOS BRUTOS RECEBIDOS DO NOTION
-    console.log("\n=======================================================");
-    console.log("📥 [NOTION API] RESPOSTA BRUTA RECEBIDA DO NOTION:");
-    console.log("-------------------------------------------------------");
-    console.log("📊 Quantidade de Projetos Retornados:", response.results?.length ?? 0);
-    console.log("🏷️ Opções de Stack (Filtros extraídos da Tabela Stacks):", stackOptions);
-    console.log("📋 Propriedades das Páginas Recebidas:");
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    response.results.forEach((page: any, idx: number) => {
-      console.log(`\n--- [Projeto #${idx + 1} - ID: ${page.id}] ---`);
-      console.log(JSON.stringify(page.properties, null, 2));
-    });
-    console.log("=======================================================\n");
-
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const parsedProjects: Project[] = await Promise.all(
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -506,7 +492,6 @@ export async function getSiteContent(): Promise<SiteContent> {
       }
     }
 
-    console.log("📝 [NOTION DADOS] Textos do site carregados com sucesso da Tabela Dados!");
     return siteContent;
   } catch (err) {
     console.error("[Notion] Erro ao carregar Tabela Dados:", err);
@@ -610,7 +595,6 @@ export async function getContactData(): Promise<ContactData> {
       });
     }
 
-    console.log("📬 [NOTION CONTATO] Dados de contato carregados da Tabela Contato!");
     return contactData;
   } catch (err) {
     console.error("[Notion] Erro ao carregar Tabela Contato:", err);
@@ -695,7 +679,6 @@ export async function getExperiences(): Promise<Experience[]> {
       return getLatestYear(b.period) - getLatestYear(a.period);
     });
 
-    console.log(`💼 [NOTION EXPERIÊNCIAS] ${experiences.length} experiências carregadas com sucesso!`);
     return experiences;
   } catch (err) {
     console.error("[Notion] Erro ao carregar Tabela Experiências:", err);
@@ -775,7 +758,6 @@ export async function getTechStacks(): Promise<TechStackCategory[]> {
       return getPriority(a.title) - getPriority(b.title);
     });
 
-    console.log(`⚡ [NOTION STACKS] ${categories.length} grupos de stacks carregados com sucesso!`);
     return categories;
   } catch (err) {
     console.error("[Notion] Erro ao carregar Tabela Stacks:", err);
@@ -880,7 +862,6 @@ export async function getEducation(): Promise<Education[]> {
       return defaultEducation as Education[];
     }
 
-    console.log(`🎓 [NOTION EDUCAÇÃO] ${educationList.length} itens de educação carregados com sucesso!`);
     return educationList;
   } catch (err) {
     console.error("[Notion] Erro ao carregar Tabela Educação:", err);
