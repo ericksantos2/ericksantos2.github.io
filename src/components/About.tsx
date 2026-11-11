@@ -20,21 +20,23 @@ export function About({ aboutParagraphs, principles, experiences, education }: A
   return (
     <section id="sobre" className="py-16 md:py-24 border-b-2 border-black dark:border-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        {/* Section Header */}
+        <div className="mb-10">
+          <div className="inline-block px-2.5 py-0.5 mb-2 font-mono text-xs font-bold uppercase bg-neutral-200 dark:bg-neutral-800 border border-black dark:border-white">
+            // 03. BIO & FILOSOFIA
+          </div>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight">
+            SOBRE MIM
+          </h2>
+        </div>
+
         <div
           className={`grid grid-cols-1 ${
-            hasRightColumn ? "lg:grid-cols-12 gap-8 lg:gap-12" : "max-w-4xl mx-auto gap-8"
+            hasRightColumn ? "lg:grid-cols-12 gap-8 lg:gap-10 items-start" : "max-w-4xl mx-auto gap-8"
           }`}
         >
           {/* Left Column: Manifesto / Bio */}
-          <div className={`${hasRightColumn ? "lg:col-span-5" : "w-full"} space-y-6`}>
-            <div>
-              <div className="inline-block px-2.5 py-0.5 mb-2 font-mono text-xs font-bold uppercase bg-neutral-200 dark:bg-neutral-800 border border-black dark:border-white">
-                // 03. BIO & FILOSOFIA
-              </div>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight">
-                SOBRE MIM
-              </h2>
-            </div>
+          <div className={`${hasRightColumn ? "lg:col-span-6" : "w-full"} space-y-6`}>
 
             <div className="neo-card p-6 space-y-4 text-sm font-mono leading-relaxed">
               <div className="flex items-center gap-2 font-bold text-base border-b-2 border-black dark:border-white pb-3">
@@ -99,7 +101,7 @@ export function About({ aboutParagraphs, principles, experiences, education }: A
 
           {/* Right Column: Trajetória & Educação */}
           {hasRightColumn && (
-            <div className="lg:col-span-7 space-y-10">
+            <div className="lg:col-span-6 space-y-6">
               {/* Experiências (se houver) */}
               {hasExperiences && (
                 <div>
