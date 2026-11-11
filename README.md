@@ -37,17 +37,13 @@ Portfólio profissional de desenvolvimento de software com estética **Neobrutal
 
 ### 1. Clonar o repositório e instalar dependências
 ```bash
-git clone https://github.com/ericksantos2/seu-repositorio.git
-cd seu-repositorio
+git clone https://github.com/ericksantos2/ericksantos2.github.io.git
+cd ericksantos2.github.io
 npm install
 ```
 
 ### 2. Configurar as variáveis de ambiente
-Crie um arquivo `.env.local` baseado no `.env.example`:
-```bash
-cp .env.example .env.local
-```
-Preencha suas chaves e IDs das tabelas do Notion:
+Crie um arquivo `.env` (ou `.env.local`) na raiz do projeto com as chaves e IDs das suas tabelas do Notion:
 ```env
 NOTION_API_KEY=ntn_seu_token_aqui
 NOTION_DATABASE_ID=id_da_tabela_projetos
