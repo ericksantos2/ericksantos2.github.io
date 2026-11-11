@@ -13,6 +13,7 @@ export interface Project {
   liveUrl?: string;
   showcaseUrl?: string;
   status: "Concluído" | "Em Progresso" | "Conceito";
+  order?: number;
 }
 
 export type CategoryFilter = string;

@@ -163,6 +163,13 @@ async function run() {
     });
     const schemaData = await schemaRes.json();
     const stackRelationDbId = schemaData.properties?.Stack?.relation?.database_id;
+    const orderProp =
+      schemaData.properties?.Ordem ||
+      schemaData.properties?.Order ||
+      schemaData.properties?.ordem ||
+      schemaData.properties?.Posicao ||
+      schemaData.properties?.Posição;
+    const orderPropName = orderProp?.name;
 
     let stackOptions = [];
     const stackPageMap = new Map();
@@ -203,7 +210,11 @@ async function run() {
       }
     }
 
-    // 2. Query projetos
+    // 2. Query projetos respeitando a ordenação do Notion (Ordem manual se houver, ou ordem cronológica de criação)
+    const sorts = orderPropName
+      ? [{ property: orderPropName, direction: "ascending" }]
+      : [{ timestamp: "created_time", direction: "ascending" }];
+
     const res = await fetch(`https://api.notion.com/v1/databases/${databaseId}/query`, {
       method: "POST",
       headers: {
@@ -211,6 +222,7 @@ async function run() {
         "Notion-Version": "2022-06-28",
         "Content-Type": "application/json",
       },
+      body: JSON.stringify({ sorts }),
     });
 
     if (!res.ok) {
@@ -300,6 +312,13 @@ async function run() {
         const blocks = await getPageBlocks(page.id);
         const fullDescription = blocksToMarkdown(blocks) || description;
 
+        const orderNum =
+          props.Ordem?.number ??
+          props.Order?.number ??
+          props.Posicao?.number ??
+          props["Posição"]?.number;
+        const order = typeof orderNum === "number" ? orderNum : undefined;
+
         return {
           id: page.id,
           slug,
@@ -315,9 +334,20 @@ async function run() {
           liveUrl,
           showcaseUrl,
           status,
+          order,
         };
       })
     );
+
+    // Se houver propriedade de ordenação, aplica a ordenação numérica final
+    if (orderPropName) {
+      projects.sort((a, b) => {
+        if (a.order !== undefined && b.order !== undefined) return a.order - b.order;
+        if (a.order !== undefined) return -1;
+        if (b.order !== undefined) return 1;
+        return 0;
+      });
+    }
 
     const dataDir = path.resolve(__dirname, "../src/data");
     if (!fs.existsSync(dataDir)) {

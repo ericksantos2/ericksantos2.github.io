@@ -202,9 +202,19 @@ export async function getProjects(): Promise<{
     });
 
     let stackRelationDbId: string | undefined;
+    let orderPropName: string | undefined;
     if (schemaRes.ok) {
       const schemaData = await schemaRes.json();
       stackRelationDbId = schemaData.properties?.Stack?.relation?.database_id;
+      const orderProp =
+        schemaData.properties?.Ordem ||
+        schemaData.properties?.Order ||
+        schemaData.properties?.ordem ||
+        schemaData.properties?.Posicao ||
+        schemaData.properties?.Posição;
+      if (orderProp) {
+        orderPropName = orderProp.name;
+      }
     }
 
     // 2. Se houver relação com a Tabela Stacks, busca todas as opções e o mapeamento de páginas
@@ -258,7 +268,11 @@ export async function getProjects(): Promise<{
       }
     }
 
-    // 3. Consulta a lista de projetos na Tabela Projetos
+    // 3. Consulta a lista de projetos na Tabela Projetos respeitando a ordenação do Notion
+    const sorts = orderPropName
+      ? [{ property: orderPropName, direction: "ascending" }]
+      : [{ timestamp: "created_time", direction: "ascending" }];
+
     const res = await fetch(`https://api.notion.com/v1/databases/${databaseId}/query`, {
       method: "POST",
       headers: {
@@ -266,6 +280,7 @@ export async function getProjects(): Promise<{
         "Notion-Version": "2022-06-28",
         "Content-Type": "application/json",
       },
+      body: JSON.stringify({ sorts }),
       next: { revalidate: 60 },
     });
 
@@ -357,6 +372,13 @@ export async function getProjects(): Promise<{
         const blocks = await getPageBlocks(apiKey, page.id);
         const fullDescription = blocksToMarkdown(blocks) || description;
 
+        const orderNum =
+          props.Ordem?.number ??
+          props.Order?.number ??
+          props.Posicao?.number ??
+          props["Posição"]?.number;
+        const order = typeof orderNum === "number" ? orderNum : undefined;
+
         return {
           id: page.id,
           slug,
@@ -372,9 +394,19 @@ export async function getProjects(): Promise<{
           liveUrl,
           showcaseUrl,
           status,
+          order,
         };
       })
     );
+
+    if (orderPropName) {
+      parsedProjects.sort((a, b) => {
+        if (a.order !== undefined && b.order !== undefined) return a.order - b.order;
+        if (a.order !== undefined) return -1;
+        if (b.order !== undefined) return 1;
+        return 0;
+      });
+    }
 
     // Constrói os filtros finais: "Todos" + todas as opções da Tabela Stacks de Projetos
     const assignedCategories = parsedProjects.map((p) => p.category).filter(Boolean);
