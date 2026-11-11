@@ -1,8 +1,16 @@
 name: Deploy to GitHub Pages
 
 on:
+  # Dispara automaticamente quando você faz push
   push:
     branches: ["main", "master"]
+
+  # Dispara em um horário agendado (Cron):
+  # Exemplo: Todo dia às 00:00 e às 12:00 UTC (9h e 21h Horário de Brasília)
+  schedule:
+    - cron: "0 0,12 * * *"
+
+  # Permite você disparar manualmente pelo botão "Run workflow" no GitHub
   workflow_dispatch:
 
 permissions:
@@ -52,6 +60,10 @@ jobs:
         env:
           NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
           NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+          NOTION_DADOS_DATABASE_ID: ${{ secrets.NOTION_DADOS_DATABASE_ID }}
+          NOTION_CONTATO_DATABASE_ID: ${{ secrets.NOTION_CONTATO_DATABASE_ID }}
+          NOTION_EXPERIENCIAS_DATABASE_ID: ${{ secrets.NOTION_EXPERIENCIAS_DATABASE_ID }}
+          NOTION_STACKS_DATABASE_ID: ${{ secrets.NOTION_STACKS_DATABASE_ID }}
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
 
       - name: Upload artifact
