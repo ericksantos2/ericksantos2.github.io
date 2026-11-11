@@ -1,12 +1,13 @@
 {
-  "heroText": "Desenvolvedor de software focado em aplicações web de alta performance, interfaces funcionais em estilo neobrutalista e arquiteturas desacopladas gerenciadas via **Notion como Headless CMS**.",
+  "heroText": "Desenvolvedor Full-Stack em formação em Ciência da Computação, focado no ecossistema **Java (Spring Boot)** e **TypeScript (React)**. Construo aplicações completas com foco em segurança (JWT rotativo, RBAC), arquiteturas desacopladas e testes de integração orquestrados via **Docker**.",
   "aboutParagraphs": [
-    "Acredito que o bom software é aquele que resolve o problema sem adornos inúteis. Minha abordagem combina a solidez da engenharia de software com o impacto visual cru do **Neobrutalismo**.",
-    "Uso o **Notion como banco de dados headless** para manter o conteúdo sempre atualizado de forma ágil, permitindo gerar sites 100% estáticos, seguros e ultra velozes que rodam de graça no GitHub Pages."
+    "Sou desenvolvedor em formação em Ciência da Computação pela Uninter, com forte interesse em engenharia de software, segurança de APIs e ecossistemas Linux. Minha abordagem une a solidez do backend em **Java/Spring Boot** com interfaces modernas, reativas e tipadas em **React e TypeScript**.",
+    "Gosto de entender como as coisas funcionam além do front: desde a orquestração de ambientes e testes automatizados com Docker até a criação de scripts de automação de sistema em Bash. Acredito em código limpo, contratos bem documentados e soluções diretas que agreguem valor real."
   ],
   "principles": [
-    "Código limpo, tipado e com zero dependências inúteis.",
-    "Design monocromático de alto contraste e fácil leitura.",
-    "Deploy 100% estático, sem custo de servidor para o portfólio."
+    "Código limpo, fortemente tipado e com separação clara de responsabilidades.",
+    "Segurança do software em primeiro lugar: autenticação consistente, RBAC e validação estrita.",
+    "Automação e reprodutibilidade de ambientes com Docker e scripts utilitários.",
+    "Interfaces funcionais, ágeis e sem dependências supérfluas."
   ]
 }

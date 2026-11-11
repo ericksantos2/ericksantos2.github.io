@@ -3,8 +3,16 @@
     "id": "41542128-8869-80b8-8544-f0f40fc0301c",
     "course": "Ciência da Computação",
     "institution": "Centro Universitário Internacional - UNINTER",
-    "period": "2026 — 2030",
+    "period": "2026 - Previsão de Término 2030",
     "type": "Graduação",
     "description": ""
+  },
+  {
+    "id": "41542128-8869-8040-93f0-db03902067bd",
+    "course": "Formação em Tecnologia & Cursos Complementares",
+    "institution": "Alura Cursos Online",
+    "period": "2022 - 2023",
+    "type": "Cursos / Especialização",
+    "description": "49 cursos concluídos com foco no ecossistema web moderno (React, Next.js, Node.js, TypeScript e ambiente Linux)."
   }
 ]
