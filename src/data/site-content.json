@@ -1,0 +1,12 @@
+{
+  "heroText": "Desenvolvedor de software focado em aplicações web de alta performance, interfaces funcionais em estilo neobrutalista e arquiteturas desacopladas gerenciadas via **Notion como Headless CMS**.",
+  "aboutParagraphs": [
+    "Acredito que o bom software é aquele que resolve o problema sem adornos inúteis. Minha abordagem combina a solidez da engenharia de software com o impacto visual cru do **Neobrutalismo**.",
+    "Uso o **Notion como banco de dados headless** para manter o conteúdo sempre atualizado de forma ágil, permitindo gerar sites 100% estáticos, seguros e ultra velozes que rodam de graça no GitHub Pages."
+  ],
+  "principles": [
+    "Código limpo, tipado e com zero dependências inúteis.",
+    "Design monocromático de alto contraste e fácil leitura.",
+    "Deploy 100% estático, sem custo de servidor para o portfólio."
+  ]
+}

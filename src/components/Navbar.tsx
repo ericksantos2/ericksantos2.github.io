@@ -2,14 +2,9 @@
 
 import React, { useState } from "react";
 import { useTheme } from "./ThemeProvider";
-import { Sun, Moon, Database, Menu, X } from "lucide-react";
+import { Sun, Moon, Menu, X } from "lucide-react";
 
-interface NavbarProps {
-  onOpenNotionGuide: () => void;
-  isNotionLive?: boolean;
-}
-
-export function Navbar({ onOpenNotionGuide, isNotionLive = false }: NavbarProps) {
+export function Navbar() {
   const { theme, toggleTheme } = useTheme();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -63,25 +58,8 @@ export function Navbar({ onOpenNotionGuide, isNotionLive = false }: NavbarProps)
           </a>
         </nav>
 
-        {/* Actions (Notion Guide + Theme Toggle) */}
+        {/* Actions (Theme Toggle + Mobile Menu) */}
         <div className="flex items-center gap-2 sm:gap-3">
-          {/* Notion Status / Guide trigger */}
-          <button
-            onClick={onOpenNotionGuide}
-            className="flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-mono font-bold uppercase neo-btn hover:bg-neutral-100 dark:hover:bg-neutral-800"
-            title="Clique para ver o status e instruções do Notion CMS"
-          >
-            <Database className="w-3.5 h-3.5" />
-            <span className="hidden sm:inline">
-              {isNotionLive ? "Notion: Ativo" : "Notion CMS"}
-            </span>
-            <span
-              className={`w-2 h-2 rounded-full ${
-                isNotionLive ? "bg-black dark:bg-white" : "bg-neutral-400 dark:bg-neutral-600"
-              }`}
-            />
-          </button>
-
           {/* Theme Toggle Button */}
           <button
             onClick={toggleTheme}

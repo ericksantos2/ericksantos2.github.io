@@ -1,71 +1,80 @@
 "use client";
 
 import React from "react";
-import { Cpu, Terminal, Layout, ShieldCheck } from "lucide-react";
+import { Cpu, Terminal, Layout, ShieldCheck, Layers } from "lucide-react";
+import { TechStackCategory } from "@/types/project";
 
-interface StackCategory {
-  title: string;
-  icon: React.ReactNode;
-  description: string;
-  skills: string[];
+interface TechStackProps {
+  stacks?: TechStackCategory[];
 }
 
-const STACKS: StackCategory[] = [
-  {
-    title: "FRONTEND ENGINEERING",
-    icon: <Layout className="w-5 h-5" />,
-    description: "Interfaces reativas, responsivas e construídas com tipagem estrita.",
-    skills: [
-      "React 19",
-      "Next.js 16 (App Router)",
-      "TypeScript",
-      "TailwindCSS v4",
-      "Zustand / Redux",
-      "HTML5 Semântico",
-    ],
-  },
-  {
-    title: "BACKEND & APIS",
-    icon: <Terminal className="w-5 h-5" />,
-    description: "Serviços escaláveis, rotas de alto rendimento e modelagem de dados.",
-    skills: [
-      "Node.js / Express",
-      "Notion SDK & REST APIs",
-      "PostgreSQL",
-      "SQLite / IndexedDB",
-      "Redis Caching",
-      "Autenticação JWT / WebAuthn",
-    ],
-  },
-  {
-    title: "DEVOPS & DEPLOYMENT",
-    icon: <Cpu className="w-5 h-5" />,
-    description: "Infraestrutura estática, automação e entregas contínuas seguras.",
-    skills: [
-      "GitHub Pages (Static Export)",
-      "GitHub Actions (CI/CD)",
-      "Vercel / Netlify",
-      "Docker Containers",
-      "Git Flow / Conventional Commits",
-      "Linux / Bash",
-    ],
-  },
-  {
-    title: "DESIGN & ARQUITETURA",
-    icon: <ShieldCheck className="w-5 h-5" />,
-    description: "Decisões orientadas a clareza, usabilidade e manutenibilidade.",
-    skills: [
-      "Neobrutalismo Estético",
-      "Design Monocromático",
-      "Clean Architecture",
-      "Web Core Vitals (100 Lighthouse)",
-      "SEO & Metatags",
-      "Local-First Architecture",
-    ],
-  },
-];
+function getIconForStack(title: string) {
+  const upper = title.toUpperCase();
+  if (upper.includes("FRONTEND")) return <Layout className="w-5 h-5" />;
+  if (upper.includes("BACKEND") || upper.includes("API")) return <Terminal className="w-5 h-5" />;
+  if (upper.includes("DEVOPS") || upper.includes("DEPLOY")) return <Cpu className="w-5 h-5" />;
+  if (upper.includes("DESIGN") || upper.includes("ARQUITETURA")) return <ShieldCheck className="w-5 h-5" />;
+  return <Layers className="w-5 h-5" />;
+}
 
-export function TechStack() {
+export function TechStack({ stacks }: TechStackProps) {
+  const defaultStacks: TechStackCategory[] = [
+    {
+      id: "front",
+      title: "FRONTEND ENGINEERING",
+      description: "Interfaces reativas, responsivas e construídas com tipagem estrita.",
+      skills: [
+        "React 19",
+        "Next.js 16 (App Router)",
+        "TypeScript",
+        "TailwindCSS v4",
+        "Zustand / Redux",
+        "HTML5 Semântico",
+      ],
+    },
+    {
+      id: "back",
+      title: "BACKEND & APIS",
+      description: "Serviços escaláveis, rotas de alto rendimento e modelagem de dados.",
+      skills: [
+        "Node.js / Express",
+        "Notion SDK & REST APIs",
+        "PostgreSQL",
+        "SQLite / IndexedDB",
+        "Redis Caching",
+        "Autenticação JWT / WebAuthn",
+      ],
+    },
+    {
+      id: "devops",
+      title: "DEVOPS & DEPLOYMENT",
+      description: "Infraestrutura estática, automação e entregas contínuas seguras.",
+      skills: [
+        "GitHub Pages (Static Export)",
+        "GitHub Actions (CI/CD)",
+        "Vercel / Netlify",
+        "Docker Containers",
+        "Git Flow / Conventional Commits",
+        "Linux / Bash",
+      ],
+    },
+    {
+      id: "design",
+      title: "DESIGN & ARQUITETURA",
+      description: "Decisões orientadas a clareza, usabilidade e manutenibilidade.",
+      skills: [
+        "Neobrutalismo Estético",
+        "Design Monocromático",
+        "Clean Architecture",
+        "Web Core Vitals (100 Lighthouse)",
+        "SEO & Metatags",
+        "Local-First Architecture",
+      ],
+    },
+  ];
+
+  const activeStacks = stacks && stacks.length > 0 ? stacks : defaultStacks;
+
   return (
     <section id="stack" className="py-16 md:py-24 border-b-2 border-black dark:border-white bg-neutral-100/50 dark:bg-neutral-900/40">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -84,9 +93,9 @@ export function TechStack() {
 
         {/* Stack Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {STACKS.map((item, index) => (
+          {activeStacks.map((item, index) => (
             <div
-              key={item.title}
+              key={item.id || item.title}
               className="neo-card p-6 md:p-8 flex flex-col justify-between hover:-translate-x-1 hover:-translate-y-1 transition-all"
             >
               <div>
@@ -94,7 +103,7 @@ export function TechStack() {
                 <div className="flex items-center justify-between border-b-2 border-black dark:border-white pb-4 mb-4">
                   <div className="flex items-center gap-3">
                     <div className="p-2 bg-black text-white dark:bg-white dark:text-black">
-                      {item.icon}
+                      {getIconForStack(item.title)}
                     </div>
                     <h3 className="font-mono text-base md:text-lg font-black uppercase tracking-tight">
                       {item.title}

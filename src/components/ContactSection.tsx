@@ -1,17 +1,51 @@
 "use client";
 
 import React, { useState } from "react";
-import { Mail, Copy, Check, ArrowUpRight, MessageSquare } from "lucide-react";
+import { Mail, Copy, Check, ArrowUpRight, MessageSquare, Globe } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "./Icons";
+import { ContactData } from "@/types/project";
+import { renderInline } from "./MarkdownContent";
 
-export function ContactSection() {
+interface ContactSectionProps {
+  contactData?: ContactData;
+}
+
+export function ContactSection({ contactData }: ContactSectionProps) {
   const [copied, setCopied] = useState(false);
-  const email = "erick.contato@exemplo.com";
+  const email = contactData?.email || "ericksgbarros@gmail.com";
+  const title = contactData?.title || "VAMOS TRABALHAR JUNTOS?";
+  const description =
+    contactData?.description ||
+    "Estou sempre aberto a novos projetos desafiadores, parcerias técnicas ou oportunidades full-time. Fale comigo diretamente por qualquer um dos canais abaixo.";
+  const links = contactData?.links && contactData.links.length > 0
+    ? contactData.links
+    : [
+        {
+          id: "github",
+          name: "GitHub",
+          url: "https://github.com/ericksantos2",
+          type: "card",
+        },
+        {
+          id: "linkedin",
+          name: "LinkedIn",
+          url: "https://www.linkedin.com/in/ericksantos2/",
+          type: "card",
+        },
+      ];
 
   const handleCopy = () => {
     navigator.clipboard.writeText(email);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
+  };
+
+  const getIconForLink = (name: string) => {
+    const n = name.toLowerCase();
+    if (n.includes("github")) return <GithubIcon className="w-4 h-4" />;
+    if (n.includes("linkedin")) return <LinkedinIcon className="w-4 h-4" />;
+    if (n.includes("whats") || n.includes("zap")) return <MessageSquare className="w-4 h-4" />;
+    return <Globe className="w-4 h-4" />;
   };
 
   return (
@@ -24,15 +58,14 @@ export function ContactSection() {
               // 04. CONEXÃO DIRETA
             </div>
             <h2 className="text-3xl sm:text-5xl md:text-6xl font-black uppercase tracking-tight">
-              VAMOS TRABALHAR JUNTOS?
+              {title}
             </h2>
             <p className="mt-3 text-sm sm:text-base font-mono text-neutral-600 dark:text-neutral-400 max-w-2xl">
-              Estou sempre aberto a novos projetos desafiadores, parcerias técnicas ou oportunidades full-time.
-              Fale comigo diretamente por qualquer um dos canais abaixo.
+              {renderInline(description)}
             </p>
           </div>
 
-          {/* Email Box */}
+          {/* Email Box (Card Primário) */}
           <div className="p-4 md:p-6 border-2 border-black dark:border-white bg-neutral-100 dark:bg-neutral-900 mb-8 neo-shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-3">
               <div className="p-2.5 bg-black text-white dark:bg-white dark:text-black">
@@ -67,46 +100,27 @@ export function ContactSection() {
             </div>
           </div>
 
-          {/* Social Links */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <a
-              href="https://github.com"
-              target="_blank"
-              rel="noreferrer"
-              className="neo-card p-4 flex items-center justify-between group hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all"
-            >
-              <div className="flex items-center gap-2 font-mono text-xs font-bold uppercase">
-                <GithubIcon className="w-4 h-4" />
-                <span>GitHub</span>
-              </div>
-              <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-            </a>
-
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noreferrer"
-              className="neo-card p-4 flex items-center justify-between group hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all"
-            >
-              <div className="flex items-center gap-2 font-mono text-xs font-bold uppercase">
-                <LinkedinIcon className="w-4 h-4" />
-                <span>LinkedIn</span>
-              </div>
-              <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-            </a>
-
-            <a
-              href="https://wa.me/"
-              target="_blank"
-              rel="noreferrer"
-              className="neo-card p-4 flex items-center justify-between group hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all"
-            >
-              <div className="flex items-center gap-2 font-mono text-xs font-bold uppercase">
-                <MessageSquare className="w-4 h-4" />
-                <span>WhatsApp</span>
-              </div>
-              <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-            </a>
+          {/* Social Links Cards (Dinâmicos da Tabela Contato) */}
+          <div
+            className={`grid grid-cols-1 gap-4 ${
+              links.length === 2 ? "sm:grid-cols-2" : "sm:grid-cols-2 md:grid-cols-3"
+            }`}
+          >
+            {links.map((link) => (
+              <a
+                key={link.id}
+                href={link.url}
+                target="_blank"
+                rel="noreferrer"
+                className="neo-card p-4 flex items-center justify-between group hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all"
+              >
+                <div className="flex items-center gap-2 font-mono text-xs font-bold uppercase">
+                  {getIconForLink(link.name)}
+                  <span>{link.name}</span>
+                </div>
+                <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              </a>
+            ))}
           </div>
         </div>
       </div>

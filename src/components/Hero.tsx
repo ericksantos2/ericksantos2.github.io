@@ -1,16 +1,16 @@
 "use client";
 
 import React from "react";
-import { ArrowDownRight, Terminal, Sparkles, Database } from "lucide-react";
+import { ArrowDownRight, Terminal } from "lucide-react";
 import { PhotoFrame } from "./PhotoFrame";
+import { renderInline } from "./MarkdownContent";
 
 interface HeroProps {
-  onOpenNotionGuide: () => void;
   projectsCount: number;
-  isNotionLive: boolean;
+  heroText?: string;
 }
 
-export function Hero({ onOpenNotionGuide, projectsCount, isNotionLive }: HeroProps) {
+export function Hero({ projectsCount, heroText }: HeroProps) {
   return (
     <section className="relative pt-12 pb-16 md:pt-20 md:pb-24 border-b-2 border-black dark:border-white bg-grid-pattern">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -27,10 +27,6 @@ export function Hero({ onOpenNotionGuide, projectsCount, isNotionLive }: HeroPro
               <span className="px-3 py-1 font-mono text-xs font-bold uppercase bg-white dark:bg-black border-2 border-black dark:border-white neo-shadow-sm">
                 GITHUB PAGES READY
               </span>
-              <span className="px-3 py-1 font-mono text-xs font-bold uppercase bg-neutral-100 dark:bg-neutral-900 border-2 border-black dark:border-white neo-shadow-sm flex items-center gap-1.5">
-                <Database className="w-3.5 h-3.5" />
-                {isNotionLive ? "NOTION API LIVE" : "NOTION CMS (MOCK)"}
-              </span>
             </div>
 
             {/* Hero Title */}
@@ -44,9 +40,15 @@ export function Hero({ onOpenNotionGuide, projectsCount, isNotionLive }: HeroPro
               </h1>
 
               <p className="max-w-xl text-base sm:text-lg font-mono text-neutral-700 dark:text-neutral-300 pt-2 leading-relaxed">
-                Desenvolvedor de software focado em aplicações web de alta performance,
-                interfaces funcionais em estilo neobrutalista e arquiteturas desacopladas
-                gerenciadas via <strong>Notion como Headless CMS</strong>.
+                {heroText ? (
+                  renderInline(heroText)
+                ) : (
+                  <>
+                    Desenvolvedor de software focado em aplicações web de alta performance,
+                    interfaces funcionais em estilo neobrutalista e arquiteturas desacopladas
+                    gerenciadas via <strong>Notion como Headless CMS</strong>.
+                  </>
+                )}
               </p>
             </div>
 
@@ -66,14 +68,6 @@ export function Hero({ onOpenNotionGuide, projectsCount, isNotionLive }: HeroPro
               >
                 Contato
               </a>
-
-              <button
-                onClick={onOpenNotionGuide}
-                className="neo-btn px-4 py-3.5 font-mono text-sm font-bold uppercase tracking-wider flex items-center gap-2 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700"
-              >
-                <Sparkles className="w-4 h-4" />
-                <span className="hidden sm:inline">Guia Notion</span>
-              </button>
             </div>
           </div>
 
@@ -120,13 +114,6 @@ export function Hero({ onOpenNotionGuide, projectsCount, isNotionLive }: HeroPro
               Exportação Estática
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* Marquee Ticker */}
-      <div className="mt-12 py-3 bg-black text-white dark:bg-white dark:text-black border-y-2 border-black dark:border-white overflow-hidden whitespace-nowrap">
-        <div className="animate-marquee font-mono text-xs md:text-sm font-black uppercase tracking-widest">
-          ✦ NEXT.JS STATIC EXPORT ✦ GITHUB PAGES COMPATIBLE ✦ NOTION DATABASE BACKEND ✦ MONOCHROME NEOBRUTALISM ✦ DARK & LIGHT MODE ✦ ZERO THIRD-PARTY COOKIES ✦ TYPESCRIPT READY ✦ NEXT.JS STATIC EXPORT ✦ GITHUB PAGES COMPATIBLE ✦ NOTION DATABASE BACKEND ✦ MONOCHROME NEOBRUTALISM ✦ DARK & LIGHT MODE ✦
         </div>
       </div>
     </section>

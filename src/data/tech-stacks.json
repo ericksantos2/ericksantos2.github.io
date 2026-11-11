@@ -1,0 +1,54 @@
+[
+  {
+    "id": "41542128-8869-80c0-9a96-c4207ee16942",
+    "title": "FRONTEND ENGINEERING",
+    "description": "Interfaces reativas, responsivas e construídas com tipagem estrita.",
+    "skills": [
+      "React 19",
+      "Next.js 16 (App Router)",
+      "TypeScript",
+      "TailwindCSS v4",
+      "Zustand / Redux",
+      "HTML5 Semântico"
+    ]
+  },
+  {
+    "id": "41542128-8869-8031-b1eb-ea81fc2e0d45",
+    "title": "BACKEND & APIS",
+    "description": "Serviços escaláveis, rotas de alto rendimento e modelagem de dados.",
+    "skills": [
+      "Node.js / Express",
+      "Notion SDK & REST APIs",
+      "PostgreSQL",
+      "SQLite / IndexedDB",
+      "Redis Caching",
+      "Autenticação JWT / WebAuthn"
+    ]
+  },
+  {
+    "id": "41542128-8869-8081-8a7c-c3302ad5ef85",
+    "title": "DEVOPS & DEPLOYMENT",
+    "description": "Infraestrutura estática, automação e entregas contínuas seguras.",
+    "skills": [
+      "GitHub Pages (Static Export)",
+      "GitHub Actions (CI/CD)",
+      "Vercel / Netlify",
+      "Docker Containers",
+      "Git Flow / Conventional Commits",
+      "Linux / Bash"
+    ]
+  },
+  {
+    "id": "41542128-8869-80be-b7a7-d98ef79f5add",
+    "title": "DESIGN & ARQUITETURA",
+    "description": "Decisões orientadas a clareza, usabilidade e manutenibilidade.",
+    "skills": [
+      "Neobrutalismo Estético",
+      "Design Monocromático",
+      "Clean Architecture",
+      "Web Core Vitals (100 Lighthouse)",
+      "SEO & Metatags",
+      "Local-First Architecture"
+    ]
+  }
+]

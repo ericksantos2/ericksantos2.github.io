@@ -2,10 +2,19 @@
 
 import React from "react";
 import { CheckCircle2, UserCheck, Briefcase } from "lucide-react";
+import { renderInline } from "./MarkdownContent";
+import { Experience } from "@/types/project";
 
-export function About() {
-  const experiences = [
+interface AboutProps {
+  aboutParagraphs?: string[];
+  principles?: string[];
+  experiences?: Experience[];
+}
+
+export function About({ aboutParagraphs, principles, experiences }: AboutProps) {
+  const defaultExperiences: Experience[] = [
     {
+      id: "exp-1",
       period: "2023 — PRESENTE",
       role: "Engenheiro de Software Full-Stack",
       company: "Projetos Independentes & Consultoria",
@@ -13,6 +22,7 @@ export function About() {
         "Desenvolvimento de aplicações web completas, integrações com Notion/CMS headless, arquiteturas desacopladas e soluções orientadas a performance.",
     },
     {
+      id: "exp-2",
       period: "2021 — 2023",
       role: "Desenvolvedor Frontend Sênior",
       company: "Tech Solutions Inc.",
@@ -20,6 +30,7 @@ export function About() {
         "Liderança técnica de times frontend, refatoração de sistemas legados para React/Next.js e implementação de design systems acessíveis.",
     },
     {
+      id: "exp-3",
       period: "2019 — 2021",
       role: "Desenvolvedor Web & UI Designer",
       company: "Estúdio Criativo",
@@ -27,6 +38,8 @@ export function About() {
         "Criação de landing pages interativas, dashboards e interfaces de usuário com foco em tipografia forte e layouts de alto impacto.",
     },
   ];
+
+  const activeExperiences = experiences && experiences.length > 0 ? experiences : defaultExperiences;
 
   return (
     <section id="sobre" className="py-16 md:py-24 border-b-2 border-black dark:border-white">
@@ -48,16 +61,27 @@ export function About() {
                 <UserCheck className="w-5 h-5" />
                 <span>ERICK // DEVELOPER</span>
               </div>
-              <p className="text-neutral-700 dark:text-neutral-300">
-                Acredito que o bom software é aquele que resolve o problema sem adornos
-                inúteis. Minha abordagem combina a solidez da engenharia de software com
-                o impacto visual cru do <strong>Neobrutalismo</strong>.
-              </p>
-              <p className="text-neutral-700 dark:text-neutral-300">
-                Uso o <strong>Notion como banco de dados headless</strong> para manter o
-                conteúdo sempre atualizado de forma ágil, permitindo gerar sites 100%
-                estáticos, seguros e ultra velozes que rodam de graça no GitHub Pages.
-              </p>
+
+              {aboutParagraphs && aboutParagraphs.length > 0 ? (
+                aboutParagraphs.map((p, idx) => (
+                  <p key={idx} className="text-neutral-700 dark:text-neutral-300">
+                    {renderInline(p)}
+                  </p>
+                ))
+              ) : (
+                <>
+                  <p className="text-neutral-700 dark:text-neutral-300">
+                    Acredito que o bom software é aquele que resolve o problema sem adornos
+                    inúteis. Minha abordagem combina a solidez da engenharia de software com
+                    o impacto visual cru do <strong>Neobrutalismo</strong>.
+                  </p>
+                  <p className="text-neutral-700 dark:text-neutral-300">
+                    Uso o <strong>Notion como banco de dados headless</strong> para manter o
+                    conteúdo sempre atualizado de forma ágil, permitindo gerar sites 100%
+                    estáticos, seguros e ultra velozes que rodam de graça no GitHub Pages.
+                  </p>
+                </>
+              )}
             </div>
 
             {/* Principles */}
@@ -66,18 +90,29 @@ export function About() {
                 // PRINCÍPIOS FUNDAMENTAIS
               </div>
               <ul className="space-y-2 font-mono text-xs">
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5 text-black dark:text-white" />
-                  <span>Código limpo, tipado e com zero dependências inúteis.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5 text-black dark:text-white" />
-                  <span>Design monocromático de alto contraste e fácil leitura.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5 text-black dark:text-white" />
-                  <span>Deploy 100% estático, sem custo de servidor para o portfólio.</span>
-                </li>
+                {principles && principles.length > 0 ? (
+                  principles.map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-2">
+                      <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5 text-black dark:text-white" />
+                      <span>{renderInline(item)}</span>
+                    </li>
+                  ))
+                ) : (
+                  <>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5 text-black dark:text-white" />
+                      <span>Código limpo, tipado e com zero dependências inúteis.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5 text-black dark:text-white" />
+                      <span>Design monocromático de alto contraste e fácil leitura.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5 text-black dark:text-white" />
+                      <span>Deploy 100% estático, sem custo de servidor para o portfólio.</span>
+                    </li>
+                  </>
+                )}
               </ul>
             </div>
           </div>
@@ -90,9 +125,9 @@ export function About() {
             </div>
 
             <div className="space-y-4">
-              {experiences.map((exp, idx) => (
+              {activeExperiences.map((exp) => (
                 <div
-                  key={idx}
+                  key={exp.id}
                   className="neo-card p-6 hover:-translate-x-1 hover:-translate-y-1 transition-all"
                 >
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-neutral-300 dark:border-neutral-700 pb-3 mb-3">
@@ -109,7 +144,7 @@ export function About() {
                   </div>
 
                   <p className="font-mono text-xs text-neutral-700 dark:text-neutral-300 leading-relaxed">
-                    {exp.description}
+                    {renderInline(exp.description)}
                   </p>
                 </div>
               ))}

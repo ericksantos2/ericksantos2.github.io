@@ -3,32 +3,40 @@
 import React, { useState, useMemo } from "react";
 import { Project, CategoryFilter } from "@/types/project";
 import { ProjectCard } from "./ProjectCard";
-import { Search, Database, Layers } from "lucide-react";
+import { Search, Layers } from "lucide-react";
 
 interface ProjectListProps {
   initialProjects: Project[];
-  source: "notion" | "mock";
-  onOpenNotionGuide: () => void;
+  categories?: string[];
 }
 
-const CATEGORIES: CategoryFilter[] = [
-  "Todos",
-  "Full-Stack",
-  "Frontend",
-  "Backend",
-  "Mobile",
-  "Ferramenta",
-];
-
-export function ProjectList({ initialProjects, source, onOpenNotionGuide }: ProjectListProps) {
+export function ProjectList({
+  initialProjects,
+  categories,
+}: ProjectListProps) {
   const [selectedCategory, setSelectedCategory] = useState<CategoryFilter>("Todos");
   const [searchQuery, setSearchQuery] = useState("");
 
+  // Categorias/filtros dinâmicos vindos da Tabela Stacks de Projetos do Notion
+  const availableCategories = useMemo(() => {
+    if (categories && categories.length > 0) return categories;
+    const fromProjects = Array.from(
+      new Set(initialProjects.map((p) => p.category))
+    ).filter(Boolean);
+    return [
+      "Todos",
+      ...(fromProjects.length > 0
+        ? fromProjects
+        : ["Full-stack", "Frontend", "Desktop"]),
+    ];
+  }, [categories, initialProjects]);
+
   const filteredProjects = useMemo(() => {
     return initialProjects.filter((project) => {
-      // Filtro por categoria
+      // Filtro por categoria (Stack da relação)
       const matchesCategory =
-        selectedCategory === "Todos" || project.category === selectedCategory;
+        selectedCategory === "Todos" ||
+        project.category?.toLowerCase() === selectedCategory.toLowerCase();
 
       // Filtro por busca de texto
       const query = searchQuery.toLowerCase().trim();
@@ -57,28 +65,15 @@ export function ProjectList({ initialProjects, source, onOpenNotionGuide }: Proj
               TRABALHOS EM DESTAQUE
             </h2>
           </div>
-
-          {/* Source indicator */}
-          <div className="flex items-center gap-2">
-            <button
-              onClick={onOpenNotionGuide}
-              className="inline-flex items-center gap-2 px-3 py-1 text-xs font-mono font-bold uppercase bg-white dark:bg-neutral-900 border-2 border-black dark:border-white neo-shadow-sm hover:bg-neutral-100 dark:hover:bg-neutral-800 cursor-pointer"
-              title="Clique para ver detalhes da fonte de dados"
-            >
-              <Database className="w-3.5 h-3.5" />
-              <span>
-                FONTE: {source === "notion" ? "NOTION DATABASE (LIVE)" : "MOCK JSON (LOCAL)"}
-              </span>
-            </button>
-          </div>
         </div>
 
-        {/* Filter Controls Bar */}
+        {/* Filter Controls Bar (Categorias dinâmicas da Tabela Stacks) */}
         <div className="p-4 mb-8 border-2 border-black dark:border-white bg-white dark:bg-neutral-900 neo-shadow flex flex-col md:flex-row gap-4 justify-between items-center">
           {/* Categories */}
           <div className="flex flex-wrap items-center gap-2 w-full md:w-auto">
-            {CATEGORIES.map((cat) => {
-              const isActive = selectedCategory === cat;
+            {availableCategories.map((cat) => {
+              const isActive =
+                selectedCategory.toLowerCase() === cat.toLowerCase();
               return (
                 <button
                   key={cat}
@@ -124,7 +119,7 @@ export function ProjectList({ initialProjects, source, onOpenNotionGuide }: Proj
           </div>
 
           {selectedCategory !== "Todos" && (
-            <span>Categoria: [{selectedCategory}]</span>
+            <span>Filtro Stack: [{selectedCategory}]</span>
           )}
         </div>
 
