@@ -22,10 +22,10 @@ export function Hero({ projectsCount, heroText }: HeroProps) {
             <div className="flex flex-wrap items-center gap-2">
               <span className="px-3 py-1 font-mono text-xs font-bold uppercase bg-neutral-200 dark:bg-neutral-800 border-2 border-black dark:border-white neo-shadow-sm flex items-center gap-1.5">
                 <Terminal className="w-3.5 h-3.5" />
-                DEV FULL-STACK & DESIGN
+                DESENVOLVEDOR FULL-STACK
               </span>
               <span className="px-3 py-1 font-mono text-xs font-bold uppercase bg-white dark:bg-black border-2 border-black dark:border-white neo-shadow-sm">
-                GITHUB PAGES READY
+                CIÊNCIA DA COMPUTAÇÃO
               </span>
             </div>
 
@@ -108,10 +108,10 @@ export function Hero({ projectsCount, heroText }: HeroProps) {
 
           <div className="neo-card p-4">
             <div className="font-mono text-3xl md:text-4xl font-black mb-1">
-              0.0s
+              DOCKER
             </div>
             <div className="font-mono text-xs uppercase text-neutral-600 dark:text-neutral-400 font-bold">
-              Exportação Estática
+              Testes & Ambientes
             </div>
           </div>
         </div>
