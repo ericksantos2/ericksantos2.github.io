@@ -81,10 +81,10 @@ export function Hero({ projectsCount, heroText }: HeroProps) {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className="neo-card p-4">
             <div className="font-mono text-3xl md:text-4xl font-black mb-1">
-              05+
+              FULL
             </div>
             <div className="font-mono text-xs uppercase text-neutral-600 dark:text-neutral-400 font-bold">
-              Anos de Experiência
+              Java & TypeScript
             </div>
           </div>
 
@@ -102,7 +102,7 @@ export function Hero({ projectsCount, heroText }: HeroProps) {
               100%
             </div>
             <div className="font-mono text-xs uppercase text-neutral-600 dark:text-neutral-400 font-bold">
-              Monocromático
+              Clean Architecture
             </div>
           </div>
 

@@ -12,41 +12,18 @@ interface AboutProps {
 }
 
 export function About({ aboutParagraphs, principles, experiences }: AboutProps) {
-  const defaultExperiences: Experience[] = [
-    {
-      id: "exp-1",
-      period: "2023 — PRESENTE",
-      role: "Engenheiro de Software Full-Stack",
-      company: "Projetos Independentes & Consultoria",
-      description:
-        "Desenvolvimento de aplicações web completas, integrações com Notion/CMS headless, arquiteturas desacopladas e soluções orientadas a performance.",
-    },
-    {
-      id: "exp-2",
-      period: "2021 — 2023",
-      role: "Desenvolvedor Frontend Sênior",
-      company: "Tech Solutions Inc.",
-      description:
-        "Liderança técnica de times frontend, refatoração de sistemas legados para React/Next.js e implementação de design systems acessíveis.",
-    },
-    {
-      id: "exp-3",
-      period: "2019 — 2021",
-      role: "Desenvolvedor Web & UI Designer",
-      company: "Estúdio Criativo",
-      description:
-        "Criação de landing pages interativas, dashboards e interfaces de usuário com foco em tipografia forte e layouts de alto impacto.",
-    },
-  ];
-
-  const activeExperiences = experiences && experiences.length > 0 ? experiences : defaultExperiences;
+  const hasExperiences = Boolean(experiences && experiences.length > 0);
 
   return (
     <section id="sobre" className="py-16 md:py-24 border-b-2 border-black dark:border-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+        <div
+          className={`grid grid-cols-1 ${
+            hasExperiences ? "lg:grid-cols-12 gap-8 lg:gap-12" : "max-w-4xl mx-auto gap-8"
+          }`}
+        >
           {/* Left Column: Manifesto / Bio */}
-          <div className="lg:col-span-5 space-y-6">
+          <div className={`${hasExperiences ? "lg:col-span-5" : "w-full"} space-y-6`}>
             <div>
               <div className="inline-block px-2.5 py-0.5 mb-2 font-mono text-xs font-bold uppercase bg-neutral-200 dark:bg-neutral-800 border border-black dark:border-white">
                 // 03. BIO & FILOSOFIA
@@ -117,39 +94,41 @@ export function About({ aboutParagraphs, principles, experiences }: AboutProps) 
             </div>
           </div>
 
-          {/* Right Column: Timeline / Trajectory */}
-          <div className="lg:col-span-7">
-            <div className="flex items-center gap-2 mb-6 font-mono text-sm font-bold uppercase">
-              <Briefcase className="w-4 h-4" />
-              <span>TRAJETÓRIA & EXPERIÊNCIA</span>
-            </div>
+          {/* Right Column: Timeline / Trajectory (Oculto se não houver experiências) */}
+          {hasExperiences && (
+            <div className="lg:col-span-7">
+              <div className="flex items-center gap-2 mb-6 font-mono text-sm font-bold uppercase">
+                <Briefcase className="w-4 h-4" />
+                <span>TRAJETÓRIA & EXPERIÊNCIA</span>
+              </div>
 
-            <div className="space-y-4">
-              {activeExperiences.map((exp) => (
-                <div
-                  key={exp.id}
-                  className="neo-card p-6 hover:-translate-x-1 hover:-translate-y-1 transition-all"
-                >
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-neutral-300 dark:border-neutral-700 pb-3 mb-3">
-                    <h3 className="font-mono font-black text-base uppercase">
-                      {exp.role}
-                    </h3>
-                    <span className="font-mono text-xs font-bold px-2 py-0.5 bg-neutral-200 dark:bg-neutral-800 border border-black dark:border-white">
-                      {exp.period}
-                    </span>
+              <div className="space-y-4">
+                {experiences!.map((exp) => (
+                  <div
+                    key={exp.id}
+                    className="neo-card p-6 hover:-translate-x-1 hover:-translate-y-1 transition-all"
+                  >
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-neutral-300 dark:border-neutral-700 pb-3 mb-3">
+                      <h3 className="font-mono font-black text-base uppercase">
+                        {exp.role}
+                      </h3>
+                      <span className="font-mono text-xs font-bold px-2 py-0.5 bg-neutral-200 dark:bg-neutral-800 border border-black dark:border-white">
+                        {exp.period}
+                      </span>
+                    </div>
+
+                    <div className="font-mono text-xs font-bold text-neutral-600 dark:text-neutral-400 mb-2">
+                      @ {exp.company}
+                    </div>
+
+                    <p className="font-mono text-xs text-neutral-700 dark:text-neutral-300 leading-relaxed">
+                      {renderInline(exp.description)}
+                    </p>
                   </div>
-
-                  <div className="font-mono text-xs font-bold text-neutral-600 dark:text-neutral-400 mb-2">
-                    @ {exp.company}
-                  </div>
-
-                  <p className="font-mono text-xs text-neutral-700 dark:text-neutral-300 leading-relaxed">
-                    {renderInline(exp.description)}
-                  </p>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </section>
