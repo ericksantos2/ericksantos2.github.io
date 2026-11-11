@@ -1,0 +1,21 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: projeto-portfolio
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    volumes:
+      # Monta o diretório do projeto para permitir hot reload
+      - .:/app
+      # Preserva o node_modules e a pasta .next gerados dentro do container
+      - /app/node_modules
+      - /app/.next
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+      - HOSTNAME=0.0.0.0
+      # Habilita polling de arquivos para garantir HMR consistente através de volumes Docker
+      - WATCHPACK_POLLING=true
