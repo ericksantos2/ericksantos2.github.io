@@ -16,6 +16,11 @@ export const metadata: Metadata = {
   title: "Erick // Portfólio Neobrutalista",
   description: "Portfólio de engenharia de software com design Neobrutalista monocromático, modo escuro/claro e backend Notion CMS. Compatível com GitHub Pages.",
   keywords: ["Neobrutalismo", "Portfólio", "Desenvolvedor", "Next.js", "Notion CMS", "GitHub Pages"],
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+  },
 };
 
 export default function RootLayout({

@@ -56,6 +56,17 @@ jobs:
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
 
+      - name: Sync Notion Data
+        env:
+          NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+          NOTION_DADOS_DATABASE_ID: ${{ secrets.NOTION_DADOS_DATABASE_ID }}
+          NOTION_CONTATO_DATABASE_ID: ${{ secrets.NOTION_CONTATO_DATABASE_ID }}
+          NOTION_EXPERIENCIAS_DATABASE_ID: ${{ secrets.NOTION_EXPERIENCIAS_DATABASE_ID }}
+          NOTION_STACKS_DATABASE_ID: ${{ secrets.NOTION_STACKS_DATABASE_ID }}
+          NOTION_EDUCACAO_DATABASE_ID: ${{ secrets.NOTION_EDUCACAO_DATABASE_ID }}
+        run: npm run sync:notion
+
       - name: Build with Next.js
         env:
           NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}

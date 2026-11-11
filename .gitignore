@@ -40,6 +40,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# Dados cacheados/sincronizados do Notion (gerados em runtime/CI)
+src/data/
+
 pnpm-lock.yaml
 yarn.lock
 package-lock.json

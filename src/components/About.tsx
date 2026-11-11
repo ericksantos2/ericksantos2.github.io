@@ -154,19 +154,22 @@ export function About({ aboutParagraphs, principles, experiences, education }: A
                         key={edu.id}
                         className="neo-card p-6 hover:-translate-x-1 hover:-translate-y-1 transition-all"
                       >
-                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-neutral-300 dark:border-neutral-700 pb-3 mb-3">
-                          <div className="flex items-center gap-2">
-                            <h3 className="font-mono font-black text-base uppercase">
+                        <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 border-b border-neutral-300 dark:border-neutral-700 pb-3 mb-3">
+                          <div className="space-y-1.5">
+                            {edu.type && (
+                              <div>
+                                <span className="inline-block font-mono text-[10px] font-bold px-2 py-0.5 bg-black text-white dark:bg-white dark:text-black uppercase">
+                                  {edu.type}
+                                </span>
+                              </div>
+                            )}
+                            <h3 className="font-mono font-black text-base uppercase leading-snug">
                               {edu.course}
                             </h3>
-                            {edu.type && (
-                              <span className="font-mono text-[10px] font-bold px-1.5 py-0.5 bg-black text-white dark:bg-white dark:text-black uppercase">
-                                {edu.type}
-                              </span>
-                            )}
                           </div>
+
                           {edu.period && (
-                            <span className="font-mono text-xs font-bold px-2 py-0.5 bg-neutral-200 dark:bg-neutral-800 border border-black dark:border-white">
+                            <span className="font-mono text-xs font-bold px-2 py-0.5 bg-neutral-200 dark:bg-neutral-800 border border-black dark:border-white shrink-0 self-start">
                               {edu.period}
                             </span>
                           )}

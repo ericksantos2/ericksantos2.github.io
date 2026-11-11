@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Fundo Preto Neobrutalista -->
+  <rect width="64" height="64" fill="#000000" rx="8" />
+  
+  <!-- Borda de alto contraste -->
+  <rect x="2" y="2" width="60" height="60" fill="none" stroke="#ffffff" stroke-width="3" rx="6" />
+
+  <!-- Texto Monospaced ED (Erick Developer) -->
+  <text 
+    x="50%" 
+    y="54%" 
+    text-anchor="middle" 
+    dominant-baseline="middle" 
+    font-family="monospace, Courier, sans-serif" 
+    font-size="28" 
+    font-weight="900" 
+    letter-spacing="-1.5" 
+    fill="#ffffff"
+  >
+    ED
+  </text>
+</svg>
