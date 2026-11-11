@@ -11,28 +11,20 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-40 w-full bg-white dark:bg-black border-b-2 border-black dark:border-white neo-shadow-sm">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
         {/* Brand / Logo */}
-        <div className="flex items-center gap-3">
-          <Link
-            href="/"
-            className="flex items-center gap-2 font-mono font-black text-lg md:text-xl tracking-tight group"
-          >
-            <span className="px-2 py-1 bg-black text-white dark:bg-white dark:text-black border-2 border-black dark:border-white transition-transform group-hover:-translate-x-0.5 group-hover:-translate-y-0.5">
-              ED
-            </span>
-            <span className="uppercase tracking-wider">ERICK.DEV</span>
-          </Link>
+        <Link
+          href="/"
+          className="flex items-center gap-2 font-mono font-black text-lg md:text-xl tracking-tight group"
+        >
+          <span className="px-2 py-1 bg-black text-white dark:bg-white dark:text-black border-2 border-black dark:border-white transition-transform group-hover:-translate-x-0.5 group-hover:-translate-y-0.5">
+            ED
+          </span>
+          <span className="uppercase tracking-wider">ERICK.DEV</span>
+        </Link>
 
-          {/* Status badge */}
-          <div className="hidden lg:flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-mono font-bold uppercase bg-neutral-100 dark:bg-neutral-900 border border-black dark:border-white">
-            <span className="w-2 h-2 rounded-full bg-black dark:bg-white animate-pulse" />
-            <span>DISPONÍVEL</span>
-          </div>
-        </div>
-
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-6 font-mono text-sm font-bold uppercase">
+        {/* Desktop Nav - Centralizado perfeitamente no container */}
+        <nav className="hidden md:flex items-center gap-6 font-mono text-sm font-bold uppercase absolute left-1/2 -translate-x-1/2">
           <Link
             href="/#projetos"
             className="hover:underline underline-offset-4 decoration-2 transition-all"
@@ -59,8 +51,14 @@ export function Navbar() {
           </Link>
         </nav>
 
-        {/* Actions (Theme Toggle + Mobile Menu) */}
+        {/* Actions (Status Badge + Theme Toggle + Mobile Menu) */}
         <div className="flex items-center gap-2 sm:gap-3">
+          {/* Status badge */}
+          <div className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-mono font-bold uppercase bg-neutral-100 dark:bg-neutral-900 border border-black dark:border-white">
+            <span className="w-2 h-2 rounded-full bg-black dark:bg-white animate-pulse" />
+            <span>DISPONÍVEL</span>
+          </div>
+
           {/* Theme Toggle Button */}
           <button
             onClick={toggleTheme}
@@ -88,7 +86,7 @@ export function Navbar() {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t-2 border-black dark:border-white bg-white dark:bg-neutral-900 p-4 space-y-3 font-mono text-sm font-bold uppercase">
+        <div className="md:hidden border-t-2 border-black dark:border-white bg-white dark:bg-neutral-900 p-4 space-y-3 font-mono text-sm font-bold uppercase text-center">
           <Link
             href="/#projetos"
             onClick={() => setMobileMenuOpen(false)}
