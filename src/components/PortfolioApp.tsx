@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { Project, SiteContent, ContactData, Experience, TechStackCategory } from "@/types/project";
+import { Project, SiteContent, ContactData, Experience, TechStackCategory, Education } from "@/types/project";
 import { ThemeProvider } from "./ThemeProvider";
 import { Navbar } from "./Navbar";
 import { Hero } from "./Hero";
@@ -18,6 +18,7 @@ interface PortfolioAppProps {
   contactData?: ContactData;
   experiences?: Experience[];
   techStacks?: TechStackCategory[];
+  education?: Education[];
   source: "notion" | "mock";
 }
 
@@ -28,6 +29,7 @@ export function PortfolioApp({
   contactData,
   experiences,
   techStacks,
+  education,
   source,
 }: PortfolioAppProps) {
   // 🕵️ Status log no Console do navegador (ativo também em produção)
@@ -69,6 +71,7 @@ export function PortfolioApp({
             aboutParagraphs={siteContent?.aboutParagraphs}
             principles={siteContent?.principles}
             experiences={experiences}
+            education={education}
           />
 
           <ContactSection contactData={contactData} />

@@ -597,6 +597,80 @@ async function run() {
       }
     }
 
+    // 6. Sincroniza a Tabela Educação se o ID estiver definido
+    const eduDbId = process.env.NOTION_EDUCACAO_DATABASE_ID || "41542128886980fb8862fe17397db7a5";
+    if (eduDbId) {
+      try {
+        console.log(`\n⏳ Sincronizando Tabela Educação (ID: ${eduDbId})...`);
+        const formattedEduId = eduDbId.replace(/-/g, "");
+        const eduRes = await fetch(
+          `https://api.notion.com/v1/databases/${formattedEduId}/query`,
+          {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${apiKey}`,
+              "Notion-Version": "2022-06-28",
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        if (eduRes.ok) {
+          const eduData = await eduRes.json();
+          const educationList = [];
+          for (const page of eduData.results || []) {
+            const props = page.properties;
+            const course =
+              extractText(props.Curso || props.Nome || props.Title) || "Curso";
+            const institution =
+              extractText(props["Instituição"] || props.Instituicao || props.Escola) || "";
+            const type =
+              extractText(props.Tipo) ||
+              props.Tipo?.select?.name ||
+              props.Tipo?.multi_select?.[0]?.name ||
+              "";
+            
+            let period = "";
+            if (props["Período"]?.type === "date" && props["Período"].date) {
+              const startYear = props["Período"].date.start ? props["Período"].date.start.slice(0, 4) : "";
+              const endYear = props["Período"].date.end ? props["Período"].date.end.slice(0, 4) : "";
+              period = startYear && endYear ? `${startYear} — ${endYear}` : startYear;
+            } else {
+              period = extractText(props["Período"] || props.Periodo || props.Data);
+            }
+
+            let description = extractText(props["Descrição"] || props.Descricao || props.Description);
+            if (!description) {
+              const blocks = await getPageBlocks(page.id);
+              for (const b of blocks || []) {
+                if (b.type === "paragraph") {
+                  const p = richTextToMarkdown(b.paragraph?.rich_text);
+                  if (p.trim()) {
+                    description = p.trim();
+                    break;
+                  }
+                }
+              }
+            }
+
+            educationList.push({
+              id: page.id,
+              course,
+              institution,
+              period,
+              type,
+              description,
+            });
+          }
+
+          const eduPath = path.resolve(__dirname, "../src/data/education.json");
+          fs.writeFileSync(eduPath, JSON.stringify(educationList, null, 2), "utf-8");
+          console.log(`📂 Educação salva em: ${eduPath} (${educationList.length} itens)`);
+        }
+      } catch (e) {
+        console.warn("⚠️ Aviso ao sincronizar Tabela Educação:", e.message);
+      }
+    }
+
     console.log(`\n🎉 Sincronização concluída com sucesso!`);
     console.log(`📂 Arquivo salvo em: ${outputPath}`);
     projects.forEach((p) => {

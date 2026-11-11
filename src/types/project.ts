@@ -51,3 +51,12 @@ export interface TechStackCategory {
   description: string;
   skills: string[];
 }
+
+export interface Education {
+  id: string;
+  course: string;
+  institution: string;
+  period: string;
+  type?: string;
+  description?: string;
+}

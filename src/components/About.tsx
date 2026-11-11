@@ -1,29 +1,32 @@
 "use client";
 
 import React from "react";
-import { CheckCircle2, UserCheck, Briefcase } from "lucide-react";
+import { CheckCircle2, UserCheck, Briefcase, GraduationCap } from "lucide-react";
 import { renderInline } from "./MarkdownContent";
-import { Experience } from "@/types/project";
+import { Experience, Education } from "@/types/project";
 
 interface AboutProps {
   aboutParagraphs?: string[];
   principles?: string[];
   experiences?: Experience[];
+  education?: Education[];
 }
 
-export function About({ aboutParagraphs, principles, experiences }: AboutProps) {
+export function About({ aboutParagraphs, principles, experiences, education }: AboutProps) {
   const hasExperiences = Boolean(experiences && experiences.length > 0);
+  const hasEducation = Boolean(education && education.length > 0);
+  const hasRightColumn = hasExperiences || hasEducation;
 
   return (
     <section id="sobre" className="py-16 md:py-24 border-b-2 border-black dark:border-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div
           className={`grid grid-cols-1 ${
-            hasExperiences ? "lg:grid-cols-12 gap-8 lg:gap-12" : "max-w-4xl mx-auto gap-8"
+            hasRightColumn ? "lg:grid-cols-12 gap-8 lg:gap-12" : "max-w-4xl mx-auto gap-8"
           }`}
         >
           {/* Left Column: Manifesto / Bio */}
-          <div className={`${hasExperiences ? "lg:col-span-5" : "w-full"} space-y-6`}>
+          <div className={`${hasRightColumn ? "lg:col-span-5" : "w-full"} space-y-6`}>
             <div>
               <div className="inline-block px-2.5 py-0.5 mb-2 font-mono text-xs font-bold uppercase bg-neutral-200 dark:bg-neutral-800 border border-black dark:border-white">
                 // 03. BIO & FILOSOFIA
@@ -94,39 +97,93 @@ export function About({ aboutParagraphs, principles, experiences }: AboutProps) 
             </div>
           </div>
 
-          {/* Right Column: Timeline / Trajectory (Oculto se não houver experiências) */}
-          {hasExperiences && (
-            <div className="lg:col-span-7">
-              <div className="flex items-center gap-2 mb-6 font-mono text-sm font-bold uppercase">
-                <Briefcase className="w-4 h-4" />
-                <span>TRAJETÓRIA & EXPERIÊNCIA</span>
-              </div>
-
-              <div className="space-y-4">
-                {experiences!.map((exp) => (
-                  <div
-                    key={exp.id}
-                    className="neo-card p-6 hover:-translate-x-1 hover:-translate-y-1 transition-all"
-                  >
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-neutral-300 dark:border-neutral-700 pb-3 mb-3">
-                      <h3 className="font-mono font-black text-base uppercase">
-                        {exp.role}
-                      </h3>
-                      <span className="font-mono text-xs font-bold px-2 py-0.5 bg-neutral-200 dark:bg-neutral-800 border border-black dark:border-white">
-                        {exp.period}
-                      </span>
-                    </div>
-
-                    <div className="font-mono text-xs font-bold text-neutral-600 dark:text-neutral-400 mb-2">
-                      @ {exp.company}
-                    </div>
-
-                    <p className="font-mono text-xs text-neutral-700 dark:text-neutral-300 leading-relaxed">
-                      {renderInline(exp.description)}
-                    </p>
+          {/* Right Column: Trajetória & Educação */}
+          {hasRightColumn && (
+            <div className="lg:col-span-7 space-y-10">
+              {/* Experiências (se houver) */}
+              {hasExperiences && (
+                <div>
+                  <div className="flex items-center gap-2 mb-6 font-mono text-sm font-bold uppercase">
+                    <Briefcase className="w-4 h-4" />
+                    <span>TRAJETÓRIA & EXPERIÊNCIA</span>
                   </div>
-                ))}
-              </div>
+
+                  <div className="space-y-4">
+                    {experiences!.map((exp) => (
+                      <div
+                        key={exp.id}
+                        className="neo-card p-6 hover:-translate-x-1 hover:-translate-y-1 transition-all"
+                      >
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-neutral-300 dark:border-neutral-700 pb-3 mb-3">
+                          <h3 className="font-mono font-black text-base uppercase">
+                            {exp.role}
+                          </h3>
+                          <span className="font-mono text-xs font-bold px-2 py-0.5 bg-neutral-200 dark:bg-neutral-800 border border-black dark:border-white">
+                            {exp.period}
+                          </span>
+                        </div>
+
+                        <div className="font-mono text-xs font-bold text-neutral-600 dark:text-neutral-400 mb-2">
+                          @ {exp.company}
+                        </div>
+
+                        {exp.description && (
+                          <p className="font-mono text-xs text-neutral-700 dark:text-neutral-300 leading-relaxed">
+                            {renderInline(exp.description)}
+                          </p>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Formação Acadêmica & Cursos */}
+              {hasEducation && (
+                <div>
+                  <div className="flex items-center gap-2 mb-6 font-mono text-sm font-bold uppercase">
+                    <GraduationCap className="w-4 h-4" />
+                    <span>FORMAÇÃO ACADÊMICA & CURSOS</span>
+                  </div>
+
+                  <div className="space-y-4">
+                    {education!.map((edu) => (
+                      <div
+                        key={edu.id}
+                        className="neo-card p-6 hover:-translate-x-1 hover:-translate-y-1 transition-all"
+                      >
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-neutral-300 dark:border-neutral-700 pb-3 mb-3">
+                          <div className="flex items-center gap-2">
+                            <h3 className="font-mono font-black text-base uppercase">
+                              {edu.course}
+                            </h3>
+                            {edu.type && (
+                              <span className="font-mono text-[10px] font-bold px-1.5 py-0.5 bg-black text-white dark:bg-white dark:text-black uppercase">
+                                {edu.type}
+                              </span>
+                            )}
+                          </div>
+                          {edu.period && (
+                            <span className="font-mono text-xs font-bold px-2 py-0.5 bg-neutral-200 dark:bg-neutral-800 border border-black dark:border-white">
+                              {edu.period}
+                            </span>
+                          )}
+                        </div>
+
+                        <div className="font-mono text-xs font-bold text-neutral-600 dark:text-neutral-400 mb-1">
+                          @ {edu.institution}
+                        </div>
+
+                        {edu.description && (
+                          <p className="font-mono text-xs text-neutral-700 dark:text-neutral-300 leading-relaxed mt-2">
+                            {renderInline(edu.description)}
+                          </p>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           )}
         </div>

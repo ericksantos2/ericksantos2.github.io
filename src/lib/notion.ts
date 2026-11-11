@@ -1,9 +1,10 @@
-import { Project, SiteContent, ContactData, Experience, TechStackCategory } from "@/types/project";
+import { Project, SiteContent, ContactData, Experience, TechStackCategory, Education } from "@/types/project";
 import mockProjects from "@/data/projects.json";
 import defaultSiteContent from "@/data/site-content.json";
 import defaultContactData from "@/data/contact.json";
 import defaultExperiences from "@/data/experiences.json";
 import defaultTechStacks from "@/data/tech-stacks.json";
+import defaultEducation from "@/data/education.json";
 
 // Verifica se as credenciais do Notion estão preenchidas no ambiente
 export const isNotionConfigured = Boolean(
@@ -779,5 +780,107 @@ export async function getTechStacks(): Promise<TechStackCategory[]> {
   } catch (err) {
     console.error("[Notion] Erro ao carregar Tabela Stacks:", err);
     return defaultTechStacks as TechStackCategory[];
+  }
+}
+
+/**
+ * Helper para formatar campo de data do Notion ou texto de período
+ */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function extractPeriod(prop: any): string {
+  if (!prop) return "";
+  if (prop.type === "date" && prop.date) {
+    const startYear = prop.date.start ? prop.date.start.slice(0, 4) : "";
+    const endYear = prop.date.end ? prop.date.end.slice(0, 4) : "";
+    if (startYear && endYear) return `${startYear} — ${endYear}`;
+    if (startYear) return `${startYear}`;
+  }
+  return extractText(prop);
+}
+
+/**
+ * Busca os dados de Formação Acadêmica & Cursos da Tabela Educação do Notion
+ */
+export async function getEducation(): Promise<Education[]> {
+  const apiKey = process.env.NOTION_API_KEY;
+  const eduDbId =
+    process.env.NOTION_EDUCACAO_DATABASE_ID ||
+    "41542128886980fb8862fe17397db7a5";
+
+  if (!apiKey || !eduDbId) {
+    return defaultEducation as Education[];
+  }
+
+  try {
+    const formattedDbId = eduDbId.replace(/-/g, "");
+    const res = await fetch(`https://api.notion.com/v1/databases/${formattedDbId}/query`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Notion-Version": "2022-06-28",
+        "Content-Type": "application/json",
+      },
+      next: { revalidate: 60 },
+    });
+
+    if (!res.ok) {
+      console.warn(`[Notion] Tabela Educação retornou HTTP ${res.status}. Usando fallback.`);
+      return defaultEducation as Education[];
+    }
+
+    const data = await res.json();
+    const educationList: Education[] = [];
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    for (const page of data.results || []) {
+      const props = page.properties;
+      const course =
+        extractText(props.Curso || props.Nome || props.Title) || "Curso";
+      const institution =
+        extractText(props["Instituição"] || props.Instituicao || props.Escola) || "";
+      const type =
+        extractText(props.Tipo) ||
+        props.Tipo?.select?.name ||
+        props.Tipo?.multi_select?.[0]?.name ||
+        "";
+      const period = extractPeriod(props["Período"] || props.Periodo || props.Data);
+      const descProp =
+        extractText(props["Descrição"] || props.Descricao || props.Description);
+
+      let description = descProp;
+      // Se não tiver na coluna descrição, tenta ler se há blocos na página
+      if (!description) {
+        const blocks = await getPageBlocks(apiKey, page.id);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        for (const b of blocks || []) {
+          if (b.type === "paragraph") {
+            const p = richTextToMarkdown(b.paragraph?.rich_text);
+            if (p.trim()) {
+              description = p.trim();
+              break;
+            }
+          }
+        }
+      }
+
+      educationList.push({
+        id: page.id,
+        course,
+        institution,
+        period,
+        type,
+        description,
+      });
+    }
+
+    if (educationList.length === 0) {
+      return defaultEducation as Education[];
+    }
+
+    console.log(`🎓 [NOTION EDUCAÇÃO] ${educationList.length} itens de educação carregados com sucesso!`);
+    return educationList;
+  } catch (err) {
+    console.error("[Notion] Erro ao carregar Tabela Educação:", err);
+    return defaultEducation as Education[];
   }
 }

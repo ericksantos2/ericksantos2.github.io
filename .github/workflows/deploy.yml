@@ -64,6 +64,7 @@ jobs:
           NOTION_CONTATO_DATABASE_ID: ${{ secrets.NOTION_CONTATO_DATABASE_ID }}
           NOTION_EXPERIENCIAS_DATABASE_ID: ${{ secrets.NOTION_EXPERIENCIAS_DATABASE_ID }}
           NOTION_STACKS_DATABASE_ID: ${{ secrets.NOTION_STACKS_DATABASE_ID }}
+          NOTION_EDUCACAO_DATABASE_ID: ${{ secrets.NOTION_EDUCACAO_DATABASE_ID }}
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
 
       - name: Upload artifact
